@@ -1488,6 +1488,19 @@ section,
   color: var(--background-color);
 }
 
+.dp{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.logout-btn{
+  font-weight: bold;
+  color: red;
+}
+.user{
+  color: var(--accent-color);
+}
+
 @media(max-width: 1100px){
   .img-fluid{
     margin-left: 5vw;

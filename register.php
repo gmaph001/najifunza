@@ -56,7 +56,7 @@
                         $username = $_POST['uname'];
                         $email = $_POST['email'];
                         $password = $_POST['secret'];
-                        $photo = "media/images/login.png";
+                        $photo = "media/images/prof_pics/login.png";
 
                         $exist = false;
 

@@ -10,6 +10,16 @@
 
         $message = "none";
 
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else{
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
         $query1 = "SELECT * FROM admin";
         $query2 = "SELECT * FROM users";
 
@@ -23,8 +33,12 @@
                 if($username === $row['username'] && $password === $row['password']){
                     $id = $row['userkey'];
                     $exist = true;
-                    header("location:home.php?id=$id");
-                    break;
+                    $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
+                    $resultupd = mysqli_query($db, $queryupd);
+
+                    if($resultupd){
+                            header("location:home.php?id=$id");
+                    }
                 }
             }
         }
@@ -36,8 +50,12 @@
                     if($username === $row['username'] && $password === $row['password']){
                         $id = $row['userkey'];
                         $exist = true;
-                        header("location:home.php?id=$id");
-                        break;
+                        $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
+                        $resultupd = mysqli_query($db, $queryupd);
+
+                        if($resultupd){
+                                header("location:home.php?id=$id");
+                        }
                     }
                 }
             }
