@@ -103,48 +103,41 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section light-background">
 
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-            <div class="row gy-5">
-            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                <h2>Students</h2>
-                <div class="d-flex">
-                    <a href="#options" class="btn-get-started">Continue</a>
+            <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-5">
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h2>Secular Classes</h2>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <img src="media/images/najifunza.png" class="img-fluid" alt="Najifunza Logo">
+                </div>
                 </div>
             </div>
-            <div class="col-lg-6 order-1 order-lg-2">
-                <img src="media/images/najifunza.png" class="img-fluid" alt="Najifunza Logo">
-            </div>
-            </div>
-        </div>
 
-        <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200" id="options">
-            <div class="container position-relative">
-            <div class="row gy-4 mt-5">
+            <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200" id="options">
+                <div class="container position-relative">
+                <div class="row gy-4 mt-5">
 
-                <div class="col-xl-3 col-md-6">
-                <div class="icon-box">
-                    <div class="icon"><i class="bi bi-easel"></i></div>
-                    <?php echo "<h4 class='title'><a href='teachers.php?id=$id#options' class='stretched-link'>Primary</a></h4>";?>
+                    <?php 
+                        for($i=1; $i<7; $i++){
+                            echo 
+                            
+                            "
+                            <div class='col-xl-3 col-md-6'>
+                                <div class='icon-box'>
+                                <div class='icon'><i class='bi bi-book-fill'></i></div>
+                                <h4 class='title'><a href='class2.php?class=$i&&id=$id' class='stretched-link'>Form $i</a></h4>
+                                </div>
+                            </div>
+                            ";
+                        }
+                    ?>
+                    
+                    <!--End Icon Box -->
+                    
                 </div>
-                </div><!--End Icon Box -->
-
-                <div class="col-xl-3 col-md-6">
-                <div class="icon-box">
-                    <div class="icon"><i class="bi bi-person"></i></div>
-                    <?php echo "<h4 class='title'><a href='secondary.php?id=$id#options' class='stretched-link'>Secondary</a></h4>";?>
                 </div>
-                </div><!--End Icon Box -->
-
-                <div class="col-xl-3 col-md-6">
-                    <div class="icon-box">
-                    <div class="icon"><i class="bi bi-person-circle"></i></div>
-                    <?php echo "<h4 class='title'><a href='students.php?id=$id#options' class='stretched-link'>College/Uni</a></h4>";?>
-                    </div>
-                </div><!--End Icon Box -->
-                
             </div>
-            </div>
-        </div>
 
         </section>
 
