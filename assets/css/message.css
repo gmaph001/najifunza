@@ -1,0 +1,22 @@
+.main{
+    padding: 10vh 15vw;
+}
+.message{
+    padding: 2vh 2vw;
+    box-shadow: 0px 0px 7px 7px #33ff007e;
+    border-radius: 20px;
+    margin: auto;
+    width: 30vw;
+}
+.message p{
+    font-size: 14pt;
+    text-align: center;
+}
+@media(max-width: 950px){
+    .main{
+        padding: 10vh 5vw;
+    }
+    .message{
+        width: 80vw;
+    }
+}
