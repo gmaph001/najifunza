@@ -93,7 +93,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <?php echo "<a href='account.php?id=$id'><img src='$dp' class='dp'></a>"?>
+            <?php echo "<a href='check_user.php?id=$id'><img src='$dp' class='dp'></a>"?>
 
         </div>
     </header>
