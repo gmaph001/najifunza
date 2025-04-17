@@ -74,7 +74,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-        <a href="../home.php?id=$id" class="logo d-flex align-items-center">
+        <?php echo "<a href='../home.php?id=$id' class='logo d-flex align-items-center'>";?>
             <img src="../media/images/najifunza-logo.png" alt="">
             <span class="d-none d-lg-block">Najifunza</span>
         </a>
@@ -92,7 +92,7 @@
 
                     echo 
                     "
-                        <img src='../$dp' alt='Profile' class='rounded-circle'>
+                        <img src='../$dp' alt='Profile' class='photo'>
                         <span class='d-none d-md-block dropdown-toggle ps-2'>$init. $lastname</span>
                     ";
 
@@ -301,7 +301,7 @@
                         <?php
                             echo 
                             "
-                                <form>
+                                <form method='POST' action='profile_update.php?id=$id'>
                                     <div class='row mb-3'>
                                     <label for='profileImage' class='col-md-4 col-lg-3 col-form-label'>Profile Image</label>
                                     <div class='col-md-8 col-lg-9'>

@@ -60,7 +60,7 @@
                         $photoname = $_FILES['photo']['name'];
 
                         $folder = "../media/images/prof_pics/".$photoname;
-                        $profile = "/media/images/prof_pics/".$photoname;
+                        $profile = "media/images/prof_pics/".$photoname;
 
                         $exist = false;
 
