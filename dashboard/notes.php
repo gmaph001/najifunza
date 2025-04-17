@@ -4,6 +4,15 @@
 
     $id = $_GET['id'];
 
+    $posterID = [];
+    $subject = [];
+    $notes = [];
+    $level = [];
+    $class = [];
+    $description = [];
+    $key = [];
+    $size = 0;
+
     $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
 
@@ -28,6 +37,26 @@
     $initial = str_split($firstname);
 
     $init = $initial[0];
+
+    $query2 = "SELECT * FROM notes";
+    $result2 = mysqli_query($db, $query2);
+
+    if($result2){
+        for($i=0; $i<mysqli_num_rows($result2); $i++){
+            $row = mysqli_fetch_array($result2);
+
+            if($id === $row['poster_ID']){
+                $subject[$size] = $row['subject'];
+                $notes[$size] = $row['notes'];
+                $level[$size] = $row['level'];
+                $class[$size] = $row['class'];
+                $description[$size] = $row['description'];
+                $key[$size] = $row['notes_key'];
+                $size++;
+            }
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +65,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NAJIFUNZA | User | Photo</title>
+  <title>NAJIFUNZA | User Account</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -92,7 +121,7 @@
 
                     echo 
                     "
-                        <img src='../$dp' alt='Profile' class='rounded-circle'>
+                        <img src='../$dp' alt='Profile' class='photo-rounded'>
                         <span class='d-none d-md-block dropdown-toggle ps-2'>$init. $lastname</span>
                     ";
 
@@ -160,14 +189,14 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='exams.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Exams</span>
             </a>
@@ -194,59 +223,47 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-        <h1>Profile</h1>
-        <nav>
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item">Users</li>
-            <li class="breadcrumb-item active">Profile</li>
-            </ol>
-        </nav>
+        <h1>Notes</h1>
         </div><!-- End Page Title -->
 
-        <section class="section profile">
-            <div class="row">
-                <div class="col-xl-8">
+        <section class="section">
 
-                    <div class="card">
-                        <div class="card-body pt-3">
-                        <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered">
+            <?php
 
-                            <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Edit Photo</button>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content pt-2">
-
-                            <div class="ttab-pane fade show active profile-overview" id="profile-overview">
-
-                            <!-- Profile Edit Form -->
-                            <?php echo "<form action='photo_update.php?id=$id' method='POST' enctype='multipart/form-data'>";?>
-                                <div class="row mb-3">
-                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <?php echo "<img src='../$dp' alt='Profile' class='picha'><br><br>";?>
-                                    <input type="file" class="form-control" id="profileImage" name="photo" required>
-                                </div>
-                                </div>
-
-                                <div class="text-center">
-                                <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                            <!-- End Profile Edit Form -->
-
-                            </div>                
-
-                        </div><!-- End Bordered Tabs -->
-
+                if($size == 0){
+                    echo 
+                    "
+                        <div class='unavailable'>
+                            <p>Sorry! You have not posted any notes yet!</p>
                         </div>
-                    </div>
+                    ";
+                }
+                else{
 
-                </div>
-            </div>
+                    for($i=$size-1; $i>=0; $i--){
+                        echo
+                        "
+                            <div class='row align-items-horizontal notes'>
+
+                                <!-- Card with an image on top -->
+                                <div class='card'>
+                                    <img src='../media/images/$subject[$i].jpg' class='card-img-top card' alt='...'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>Description</h5>
+                                        <p class='card-text'>$description[$i]</p>
+                                        <p class='card-text'><a href='../$notes[$i]' class='btn btn-primary'>Preview</a></p>
+                                    </div>
+                                </div>
+                                <!-- End Card with an image on top -->
+
+                            </div>
+                        ";
+                    }
+                }
+
+            ?>
+            
+        
         </section>
 
     </main><!-- End #main -->
@@ -266,6 +283,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <?php echo "<a href='add-notes.php?id=$id' class='add-notes'>+</a>";?>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

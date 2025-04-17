@@ -1,6 +1,6 @@
 <?php
     require "../connect.php";
-    require "../address.php";
+    require "address.php";
 
     $id = $_GET['id'];
 
@@ -92,7 +92,7 @@
 
                     echo 
                     "
-                        <img src='../$dp' alt='Profile' class='photo'>
+                        <img src='../$dp' alt='Profile' class='photo-rounded'>
                         <span class='d-none d-md-block dropdown-toggle ps-2'>$init. $lastname</span>
                     ";
 
@@ -160,14 +160,14 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='exams.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Exams</span>
             </a>
@@ -342,7 +342,7 @@
                                     </div>
 
                                     <div class='text-center'>
-                                    <button type='submit' class='btn btn-primary'>Save Changes</button>
+                                    <button type='submit' class='btn btn-primary' name='profile'>Save Changes</button>
                                     </div>
                                 </form>
                             ";
@@ -354,31 +354,31 @@
 
                     <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
-                        <form>
+                        <?php echo "<form method='POST' action='update_password.php?id=$id'>";?>
 
                             <div class="row mb-3">
                             <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                             <div class="col-md-8 col-lg-9">
-                                <input name="password" type="password" class="form-control" id="currentPassword">
+                                <input name="password" type="password" class="form-control" id="currentPassword" required>
                             </div>
                             </div>
 
                             <div class="row mb-3">
                             <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                             <div class="col-md-8 col-lg-9">
-                                <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                <input name="newpassword" type="password" class="form-control" id="newPassword" required>
                             </div>
                             </div>
 
                             <div class="row mb-3">
                             <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                             <div class="col-md-8 col-lg-9">
-                                <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                <input name="renewpassword" type="password" class="form-control" id="renewPassword" required>
                             </div>
                             </div>
 
                             <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Change Password</button>
+                            <button type="submit" class="btn btn-primary" name="updatePass" onclick="checkpass()">Change Password</button>
                             </div>
                         </form><!-- End Change Password Form -->
                     </div>
@@ -389,7 +389,7 @@
                     <?php
                             echo 
                             "
-                                <form>
+                                <form method='POST' action='user_update.php?id=$id'>
                                     <div class='row mb-3'>
 
                                     <div class='row mb-3'>
@@ -407,7 +407,7 @@
                                     </div>
 
                                     <div class='text-center'>
-                                    <button type='submit' class='btn btn-primary'>Save Changes</button>
+                                    <button type='submit' class='btn btn-primary' name='update'>Save Changes</button>
                                     </div>
                                 </form>
                             ";
@@ -457,6 +457,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/login.js"></script>
 
 </body>
 
