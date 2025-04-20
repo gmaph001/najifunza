@@ -1,8 +1,48 @@
 <?php
   require "connect.php";
 
+  $lev = $_GET['lev'];
   $class = $_GET['class'];
-  $subject = $_GET['subject'];
+  $cat = $_GET['cat'];
+  $subject = strtoupper($_GET['subject']);
+
+  $description = [];
+  $poster = [];
+  $posterID = [];
+  $posterdp = [];
+  $notes = [];
+  $key = [];
+  $size = 0;
+
+  $query = "SELECT * FROM notes";
+  $result = mysqli_query($db, $query);
+
+  if($result){
+    for($i=0; $i<mysqli_num_rows($result); $i++){
+      $row = mysqli_fetch_array($result);
+
+      if($cat === $row['category'] && $class === $row['class'] && $subject === $row['subject'] && $lev === $row['level']){
+        $notes[$size] = $row['notes'];
+        $poster[$size] = $row['poster'];
+        $posterID[$size] = $row['poster_ID'];
+        $description[$size] = $row['description'];
+
+        $query2 = "SELECT * FROM admin";
+        $result2 = mysqli_query($db, $query2);
+
+        if($result2){
+          for($j=0; $j<mysqli_num_rows($result2); $j++){
+            $row = mysqli_fetch_array($result2);
+
+            if($posterID[$size] === $row['userkey']){
+              $posterdp[$size] = $row['photo'];
+            }
+          }
+        }
+        $size++;
+      }
+    }
+  }
 
   $somo = strtolower($subject);
 ?>
@@ -44,9 +84,9 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="news.php">News</a></li>
-          <li><a href="students.html">Notes</a></li>
+          <li><a href="students.html" class="active">Notes</a></li>
           <li><a href="exams.html">Exams</a></li>
           <li><a href="contact.php">Contact</a></li>
           <li><a href="login.html">Login</a></li>
@@ -88,110 +128,31 @@
         <div class="container">
             <div class="row gy-4">
 
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="pricing-tem">
-                  <h3 style="color: #20c997;">MR. LIMBU</h3>
-                  <div class="icon">
-                      <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                  </div>
-                  <ul>
-                      <h2>Description</h2>
-                      <li>This is chapter 2 Computer Science notes!</li>
-                  </ul>
-                  <a href="#" class="btn-buy">Read Now</a><br>
-                  <a href="#" class="btn-download">Download Now</a>
-                  </div>
-              </div><!-- End Pricing Item -->
+              <?php
+                for($i=$size-1; $i>=0; $i--){
+                  echo 
 
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="#" class="btn-buy">Read Now</a><br>
-                <a href="#" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
-
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="#" class="btn-buy">Read Now</a><br>
-                <a href="#" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
-
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="media/documents/notes/C++ notes.pdf" class="btn-buy" target="_blank">Read Now</a><br>
-                <a href="media/documents/notes/C++ notes.pdf" download="C++ Notes" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
-
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="media/documents/notes/C++ notes.pdf" class="btn-buy" target="_blank">Read Now</a><br>
-                <a href="media/documents/notes/C++ notes.pdf" download="C++ Notes" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
-
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="media/documents/notes/C++ notes.pdf" class="btn-buy" target="_blank">Read Now</a><br>
-                <a href="media/documents/notes/C++ notes.pdf" download="C++ Notes" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
-
-              <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="pricing-tem">
-                <h3 style="color: #20c997;">MR. LIMBU</h3>
-                <div class="icon">
-                    <i class="bi" style="color: #20c997;"><img src="media/images/prof_pics/login.png" class="profile"></i>
-                </div>
-                <ul>
-                    <h2>Description</h2>
-                    <li>This is chapter 2 Computer Science notes!</li>
-                </ul>
-                <a href="media/documents/notes/C++ notes.pdf" class="btn-buy" target="_blank">Read Now</a><br>
-                <a href="media/documents/notes/C++ notes.pdf" download="C++ Notes" class="btn-download">Download Now</a>
-                </div>
-              </div><!-- End Pricing Item -->
+                  "
+                    <div class='col-lg-3 col-md-6' data-aos='zoom-in' data-aos-delay='100'>
+                      <div class='pricing-tem'>
+                        <h3 style='color: #20c997;'>$poster[$i]</h3>
+                        <div class='icon'>
+                            <i class='bi' style='color: #20c997;'><img src='$posterdp[$i]' class='profile'></i>
+                        </div>
+                        <ul>
+                            <h2>Description</h2>
+                            <li>$description[$i]</li>
+                        </ul>
+                        <a href='$notes[$i]' class='btn-buy'>Read Now</a><br>
+                        <a href='$notes[$i]' class='btn-download' download='$description[$i]'>Download Now</a><br><br>
+                        <a href='login2.php?lev=$lev&&class=$class&&cat=$cat&&subject=$subject' class='save'>Save</a>
+                      </div>
+                    </div>
+                  ";
+                }
+              ?>
+              
+              <!-- End Pricing Item -->
 
             </div><!-- End pricing row -->
 
@@ -218,7 +179,7 @@
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/"></a>
+        Designed by <a href="https://softdelete.org/">Soft Delete</a>
     </div>
     </div>
 

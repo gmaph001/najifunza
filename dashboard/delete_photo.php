@@ -52,11 +52,15 @@
 
                     require "../connect.php";
                     require "address.php";
+                    require "timer.php";
 
                     $id = $_GET['id'];
 
                     $query = "SELECT * FROM admin";
                     $result = mysqli_query($db, $query);
+
+                    $query3 = "SELECT * FROM users";
+                    $result3 = mysqli_query($db, $query3);
 
                     if($result){
                         for($i=0; $i<mysqli_num_rows($result); $i++){
@@ -69,7 +73,27 @@
                                 $result2 = mysqli_query($db, $query2);
 
                                 if($result2){
-                                    header("location:admin-account.php?id=$id");
+                                    header("location:check_user.php?id=$id");
+                                }
+                                else{
+                                    echo "Error while deleting photo!";
+                                }
+                            }
+                        }
+                    }
+
+                    if($result3){
+                        for($i=0; $i<mysqli_num_rows($result3); $i++){
+                            $row = mysqli_fetch_array($result3);
+
+                            if($id === $row['userkey']){
+                                $photo = "media/images/prof_pics/login.png";
+
+                                $query2 = "UPDATE users SET photo = '$photo' WHERE userkey = '$id'";
+                                $result2 = mysqli_query($db, $query2);
+
+                                if($result2){
+                                    header("location:check_user.php?id=$id");
                                 }
                                 else{
                                     echo "Error while deleting photo!";
@@ -96,10 +120,6 @@
                 <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                 Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>

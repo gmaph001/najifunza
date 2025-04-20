@@ -84,7 +84,7 @@
                             <li><a href='news.php?id=$id'>News</a></li>
                             <li><a href='students.html'>Notes</a></li>
                             <li><a href='exams.ph'?id=$id'>Exams</a></li>
-                            <li><a href='contact.php?id=$id'>Contact</a></li>
+                            <li><a href='contact2.php?id=$id'>Contact</a></li>
                             <li><a href='classes.php?id=$id'>My Classes</a></li>
                             <li><a href='logout.php?id=$id' class='logout-btn'>Logout</a></li>
                         ";
@@ -160,7 +160,7 @@
             <!-- You can delete the links only if you've purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/"></a>
+            Designed by <a href="https://softdelete.org/">Soft Delete</a>
         </div>
         </div>
 

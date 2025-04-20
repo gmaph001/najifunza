@@ -52,6 +52,7 @@
 
                     require "../connect.php";
                     require "address.php";
+                    require "timer.php";
 
                     $id = $_GET['id'];
 
@@ -82,7 +83,7 @@
                                     $result3 = mysqli_query($db, $query3);
 
                                     if($result3){
-                                        header("location:admin-account.php?id=$id");
+                                        header("location:check_user.php?id=$id");
                                     }
                                     else{
                                         echo "Error updating record: " . mysqli_error($db);
@@ -91,21 +92,19 @@
                                 }
                             }
                         }
-                        else{
-                            if($result2){
-                                for($i=0; $i<mysqli_num_rows($result2); $i++){
-                                    $row = mysqli_fetch_array($result2);
+                        if($result2){
+                            for($i=0; $i<mysqli_num_rows($result2); $i++){
+                                $row = mysqli_fetch_array($result2);
 
-                                    if($id === $row["userkey"]){
-                                        $query4 = "UPDATE users SET photo = '$profile' WHERE userkey = '$id'";
-                                        $result4 = mysqli_query($db, $query4);
+                                if($id === $row["userkey"]){
+                                    $query4 = "UPDATE users SET photo = '$profile' WHERE userkey = '$id'";
+                                    $result4 = mysqli_query($db, $query4);
 
-                                        if($result4){
-                                            header("location:admin-account.php?id=$id");
-                                        }
-                                        else{
-                                            echo "Error updating record: " . mysqli_error($db);
-                                        }
+                                    if($result4){
+                                        header("location:check_user.php?id=$id");
+                                    }
+                                    else{
+                                        echo "Error updating record: " . mysqli_error($db);
                                     }
                                 }
                             }
@@ -130,10 +129,6 @@
                 <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                 Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>

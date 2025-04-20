@@ -52,6 +52,7 @@
 
                          require "../connect.php";
                          require "address.php";
+                         require "timer.php";
 
                          $id = $_GET['id'];
                          $email = $_GET['email'];
@@ -82,12 +83,12 @@
                                         try {
                                              
                                              $mail->isSMTP(); 
-                                             $mail->Host       = 'smtp.gmail.com';
+                                             $mail->Host       = 'najifunza.org';
                                              $mail->SMTPAuth   = true;
-                                             $mail->Username   = 'gmaphtechnologies@gmail.com';
-                                             $mail->Password   = 'zsltnnonpqwwzzgi';
-                                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                                             $mail->Port       = 587;
+                                             $mail->Username   = 'noreply@najifunza.org';
+                                             $mail->Password   = 'wg6;K.[us$eQdcr';
+                                             $mail->SMTPSecure = 'ssl';
+                                             $mail->Port       = 465;
                                              
                                              
                                              $mail->SMTPOptions = [
@@ -99,7 +100,7 @@
                                              ];
                                              
                                              
-                                             $mail->setFrom('gmaphtechnologies@gmail.com', 'NAJIFUNZA');
+                                             $mail->setFrom('noreply@najifunza.org', 'NAJIFUNZA');
                                              $mail->addAddress($email);
                                              
                                              
@@ -153,10 +154,6 @@
                     <a href=""><i class="bi bi-linkedin"></i></a>
                </div>
                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you've purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                     Designed by <a href="https://softdelete.org/">Soft Delete</a>
                </div>
           </div>

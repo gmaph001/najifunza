@@ -1,7 +1,9 @@
 <?php
   require "connect.php";
 
+  $lev = $_GET['lev'];
   $class = $_GET['class'];
+  $cat = $_GET['cat'];
 
   if($class<=4){
     $subjects = ["Mathematics", "Physics", "Computer Science", "Chemistry", "Biology", "Geography", "Kiswahili", "English"];
@@ -50,9 +52,9 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="news.php">News</a></li>
-          <li><a href="students.html">Notes</a></li>
+          <li><a href="students.html" class="active">Notes</a></li>
           <li><a href="exams.html">Exams</a></li>
           <li><a href="contact.php">Contact</a></li>
           <li><a href="login.html">Login</a></li>
@@ -74,7 +76,9 @@
             <?php echo "<h2>Form $class Subjects</h2>";?>
           </div>
           <div class="col-lg-6 order-1 order-lg-2">
-            <img src="media/images/najifunza.png" class="img-fluid" alt="Najifunza Logo"><br><br>
+            <?php
+              echo "<img src='media/images/class$class.png' class='class' alt='Najifunza Logo'><br><br>";
+            ?>
           </div>
         </div>
       </div>
@@ -91,7 +95,7 @@
                   <div class='col-xl-3 col-md-6'>
                     <div class='icon-box'>
                       <div class='icon'><i class='bi bi-book-fill'></i></div>
-                      <h4 class='title'><a href='somo.php?class=$class&&subject=$subjects[$i]' class='stretched-link'>$subjects[$i]</a></h4>
+                      <h4 class='title'><a href='somo.php?lev=$lev&&class=$class&&cat=$cat&&subject=$subjects[$i]' class='stretched-link'>$subjects[$i]</a></h4>
                     </div>
                   </div>
                 ";
@@ -126,7 +130,7 @@
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/"></a>
+        Designed by <a href="https://softdelete.org/">Soft Delete</a>
       </div>
     </div>
 

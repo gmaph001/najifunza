@@ -36,11 +36,11 @@
 
         <nav id="navmenu" class="navmenu">
             <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="news.php">News</a></li>
             <li><a href="students.html">Notes</a></li>
             <li><a href="exams.html">Exams</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="contact.php" class="active">Contact</a></li>
             <li><a href="login.html">Login</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -146,7 +146,7 @@
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/"></a>
+                Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>
 

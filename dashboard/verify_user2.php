@@ -1,6 +1,7 @@
 <?php
     require "../connect.php";
     require "address.php";
+    require "timer.php";
 
     $id = $_GET['id'];
     $username = $_GET['user'];
@@ -83,10 +84,6 @@
                 <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                 Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>

@@ -3,8 +3,8 @@
     require "connect.php";
 
     if(isset($_POST['login'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
 
         $exist = false;
 
@@ -42,27 +42,27 @@
                 }
             }
         }
-        else{
-            if(mysqli_num_rows($result2)>0){
-                for($i=0; $i<mysqli_num_rows($result2); $i++){
-                    $row = mysqli_fetch_array($result2);
+        
+        if(mysqli_num_rows($result2)>0){
+            for($i=0; $i<mysqli_num_rows($result2); $i++){
+                $row = mysqli_fetch_array($result2);
 
-                    if($username === $row['username'] && $password === $row['password']){
-                        $id = $row['userkey'];
-                        $exist = true;
-                        $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
-                        $resultupd = mysqli_query($db, $queryupd);
+                if($username === $row['username'] && $password === $row['password']){
+                    $id = $row['userkey'];
+                    $exist = true;
+                    $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
+                    $resultupd = mysqli_query($db, $queryupd);
 
-                        if($resultupd){
-                                header("location:home.php?id=$id");
-                        }
+                    if($resultupd){
+                            header("location:home.php?id=$id");
                     }
                 }
             }
-            else{
-                $message = "There is no user yet, please<br> <a href='login.html'><b><i>Sign Up!</i></b></a>";
-            }
         }
+        else{
+            $message = "There is no user yet, please<br> <a href='login.html'><b><i>Sign Up!</i></b></a>";
+        }
+        
 
         if($message === "none"){
             if(!$exist){

@@ -81,12 +81,12 @@
                                         try {
                                              
                                              $mail->isSMTP(); 
-                                             $mail->Host       = 'smtp.gmail.com';
+                                             $mail->Host       = 'najifunza.org';
                                              $mail->SMTPAuth   = true;
-                                             $mail->Username   = 'gmaphtechnologies@gmail.com';
-                                             $mail->Password   = 'zsltnnonpqwwzzgi';
-                                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                                             $mail->Port       = 587;
+                                             $mail->Username   = 'noreply@najifunza.org';
+                                             $mail->Password   = 'wg6;K.[us$eQdcr';
+                                             $mail->SMTPSecure = 'ssl';
+                                             $mail->Port       = 465;
                                              
                                              
                                              $mail->SMTPOptions = [
@@ -98,7 +98,7 @@
                                              ];
                                              
                                              
-                                             $mail->setFrom('gmaphtechnologies@gmail.com', 'NAJIFUNZA');
+                                             $mail->setFrom('noreply@najifunza.org', 'NAJIFUNZA');
                                              $mail->addAddress($email);
                                              
                                              

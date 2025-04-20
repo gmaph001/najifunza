@@ -1,9 +1,11 @@
 <?php
     require "connect.php";
     require "address.php";
-    // require "timer.php";
+    require "timer.php";
 
     $id = $_GET['id'];
+
+    $exist = false;
 
     $query = "SELECT * FROM admin";
     $query2 = "SELECT * FROM users";
@@ -11,22 +13,24 @@
     $result = mysqli_query($db, $query);
     $result2 = mysqli_query($db, $query2);
 
-    if(mysqli_num_rows($result) > 0){
+    if(mysqli_num_rows($result) > 0 || $result){
         for($i=0; $i<mysqli_num_rows($result); $i++){
             $row = mysqli_fetch_array($result);
 
             if($id === $row['userkey']){
                 $dp = $row['photo'];
                 $username = $row['username'];
+                $exist = true;
                 break;
             }
         }
     }
-    else{
+
+    if(!$exist){
         if($result2){
             for($i=0; $i<mysqli_num_rows($result2); $i++){
                 $row = mysqli_fetch_array($result2);
-
+    
                 if($id === $row['userkey']){
                     $dp = $row['photo'];
                     $username = $row['username'];
@@ -34,10 +38,8 @@
                 }
             }
         }
-        else{
-            header("location:login.html");
-        }
     }
+       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,11 +82,11 @@
                     <?php
                         echo 
                         "
-                            <li><a href='home.php?id=$id' class='active'>Home</a></li>
+                            <li><a href='home.php?id=$id'>Home</a></li>
                             <li><a href='news.php?id=$id'>News</a></li>
-                            <li><a href='students.html'>Notes</a></li>
-                            <li><a href='exams.ph'?id=$id'>Exams</a></li>
-                            <li><a href='contact.php?id=$id'>Contact</a></li>
+                            <li><a href='students.php?id=$id' class='active'>Notes</a></li>
+                            <li><a href='exams.php?id=$id'>Exams</a></li>
+                            <li><a href='contact2.php?id=$id'>Contact</a></li>
                             <li><a href='classes.php?id=$id'>My Classes</a></li>
                             <li><a href='logout.php?id=$id' class='logout-btn'>Logout</a></li>
                         ";
@@ -93,7 +95,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <?php echo "<a href='account.php?id=$id'><img src='$dp' class='dp'></a>"?>
+            <?php echo "<a href='dashboard/check_user.php?id=$id'><img src='$dp' class='dp'></a>"?>
 
         </div>
     </header>
@@ -167,7 +169,7 @@
             <!-- You can delete the links only if you've purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/"></a>
+            Designed by <a href="https://softdelete.org/">Soft Delete</a>
         </div>
         </div>
 

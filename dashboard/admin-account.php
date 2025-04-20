@@ -1,6 +1,7 @@
 <?php
     require "../connect.php";
     require "address.php";
+    require "timer.php";
 
     $id = $_GET['id'];
 
@@ -121,7 +122,7 @@
                 </li>
 
                 <li>
-                <?php echo "<a class='dropdown-item d-flex align-items-center' href='admin-account.php?id=$id'>";?>
+                <?php echo "<a class='dropdown-item d-flex align-items-center' href='check_user.php?id=$id'>";?>
                     <i class="bi bi-person"></i>
                     <span>My Profile</span>
                 </a>
@@ -153,7 +154,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link ' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>Home</span>
             </a>
@@ -167,21 +168,21 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='exams.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Exams</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Announcements</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='home.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>Saved</span>
             </a>
@@ -195,13 +196,6 @@
 
         <div class="pagetitle">
         <h1>Profile</h1>
-        <nav>
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item">Users</li>
-            <li class="breadcrumb-item active">Profile</li>
-            </ol>
-        </nav>
         </div><!-- End Page Title -->
 
         <section class="section profile">
@@ -344,7 +338,8 @@
                                     <div class='text-center'>
                                     <button type='submit' class='btn btn-primary' name='profile'>Save Changes</button>
                                     </div>
-                                </form>
+                                </form><br>
+                                <center><p class='card-text'><a href='user_authentication.php?id=$id' class='btn btn-primary delete'>Delete Account</a></p></center>
                             ";
                         ?>
 
@@ -432,14 +427,10 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Najifunza</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="https://softdelete.org/">Soft Delete</a>
         </div>
     </footer><!-- End Footer -->
 

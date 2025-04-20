@@ -1362,6 +1362,13 @@ section,
   border-radius: 20px; 
   box-shadow: 0px 0px 5px 5px #2ee80077;
 }
+.class{
+  width: 90%;
+  height: 70vh;
+  margin-left: 5vw;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.422);
+}
 #options .row{
   display: flex;
   align-items: center;
@@ -1374,6 +1381,7 @@ section,
 }
 .somo-pic{
   width: 40vw;
+  height: 450px;
   border-radius: 20px;
   box-shadow: 0px 0px 7px 7px rgba(0, 0, 0, 0.471);
 }
@@ -1500,10 +1508,55 @@ section,
 .user{
   color: var(--accent-color);
 }
+.save{
+  border: 1px solid green;
+  font-size: 14pt;
+  border-radius: 30px;
+  padding: 1vh 3vw;
+  color: green;
+  background-color: rgb(255, 255, 255);
+  margin-top: 5vh;
+  font-weight: bold;
+  box-shadow: 0px 0px 3px 3px rgba(0, 74, 0, 0.481);
+}
+.save:hover{
+  background-color: green;
+  color: white;
+}
+.saved{
+  border: 1px solid rgb(135, 135, 135);
+  font-size: 14pt;
+  border-radius: 30px;
+  padding: 1vh 3vw;
+  color: rgb(255, 255, 255);
+  background-color: rgb(121, 121, 121);
+  margin-top: 5vh;
+  font-weight: bold;
+  cursor: pointer;
+}
+.saved:hover{
+  border: 1px solid rgb(135, 135, 135);
+  font-size: 14pt;
+  border-radius: 30px;
+  padding: 1vh 3vw;
+  color: rgb(255, 255, 255);
+  background-color: rgb(121, 121, 121);
+  margin-top: 5vh;
+  font-weight: bold;
+}
+
+
 
 @media(max-width: 1100px){
   .img-fluid{
     margin-left: 5vw;
+  }
+  .class{
+    height: 55vh;
+  }
+  .save{
+    margin-top: 7vh;
+    padding: 1vh 5vw;
   }
 }
 
@@ -1511,8 +1564,12 @@ section,
   .img-fluid{
     margin-left: 0vw;
   }
+  .class{
+    height: 35vh;
+  }
   .somo-pic{
     width: 85vw;
+    height: 200px;
     margin: auto;
   }
   .login-form{
@@ -1533,6 +1590,9 @@ section,
   .signup, .loginbtn{
     background-color: var(--btn-download-color);
     color: white;
+  }
+  .save{
+    padding: 1vh 10vw;
   }
 }
 }

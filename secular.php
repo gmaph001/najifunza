@@ -1,3 +1,6 @@
+<?php
+  $lev = $_GET['lev'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,9 +39,9 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="news.php">News</a></li>
-            <li><a href="students.html">Notes</a></li>
+            <li><a href="students.html" class="active">Notes</a></li>
             <li><a href="exams.html">Exams</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="login.html">Login</a></li>
@@ -77,7 +80,7 @@
                   <div class='col-xl-3 col-md-6'>
                     <div class='icon-box'>
                       <div class='icon'><i class='bi bi-book-fill'></i></div>
-                      <h4 class='title'><a href='class.php?class=$i' class='stretched-link'>Form $i</a></h4>
+                      <h4 class='title'><a href='class.php?lev=$lev&&class=$i&&cat=secular' class='stretched-link'>Form $i</a></h4>
                     </div>
                   </div>
                 ";
@@ -111,7 +114,7 @@
             <!-- You can delete the links only if you've purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/"></a>
+            Designed by <a href="https://softdelete.org/">Soft Delete</a>
         </div>
         </div>
 
