@@ -236,8 +236,9 @@
 
     <main id="main" class="main">
 
-        <div class="pagetitle">
-        <h1>Notes</h1>
+        <div class="pagetitle notestitle">
+            <h1>Notes</h1>
+            <?php echo "<a href='add-notes.php?id=$id' class='add2'>Upload Notes</a>";?>
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -303,7 +304,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <?php echo "<a href='add-notes.php?id=$id' class='add-notes'>+</a>";?>
+    <?php echo "<a href='add-notes.php?id=$id' class='add-notes'><span class='up-icon'>+</span><span class='up'>Upload</span></a>";?>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

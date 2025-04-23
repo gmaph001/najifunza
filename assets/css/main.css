@@ -1497,9 +1497,17 @@ section,
 }
 
 .dp{
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+}
+.account{
+  margin-left: 5px;
+  color: black;
+  font-weight: bold;
+}
+.account:hover{
+  color: var(--accent-color);
 }
 .logout-btn{
   font-weight: bold;
