@@ -54,7 +54,7 @@
                     $resultupd = mysqli_query($db, $queryupd);
 
                     if($resultupd){
-                            header("location:home.php?id=$id");
+                        header("location:home.php?id=$id");
                     }
                 }
             }

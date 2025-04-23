@@ -11,7 +11,7 @@
         localStorage.clear();
 
         document.cookie.split(";").forEach(cookie => {
-            document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/");
+            document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/");9
         });
 
         history.pushState(null, null, location.href);
@@ -22,7 +22,7 @@
             
         alert("You have been logged out due to inactivity!");
         window.location.href = "<?php echo "logout.php?id=$id";?>";
-    }
+    } 
 
-    setTimeout(logoutUser, 360000);
+    setTimeout(logoutUser, 36000000);
 </script>
