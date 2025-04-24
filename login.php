@@ -25,23 +25,6 @@
 
         $result1 = mysqli_query($db, $query1);
         $result2 = mysqli_query($db, $query2);
-
-        if(mysqli_num_rows($result1)>0){
-            for($i=0; $i<mysqli_num_rows($result1); $i++){
-                $row = mysqli_fetch_array($result1);
-
-                if($username === $row['username'] && $password === $row['password']){
-                    $id = $row['userkey'];
-                    $exist = true;
-                    $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
-                    $resultupd = mysqli_query($db, $queryupd);
-
-                    if($resultupd){
-                            header("location:home.php?id=$id");
-                    }
-                }
-            }
-        }
         
         if(mysqli_num_rows($result2)>0){
             for($i=0; $i<mysqli_num_rows($result2); $i++){
@@ -61,6 +44,23 @@
         }
         else{
             $message = "There is no user yet, please<br> <a href='login.html'><b><i>Sign Up!</i></b></a>";
+        }
+
+        if(mysqli_num_rows($result1)>0){
+            for($i=0; $i<mysqli_num_rows($result1); $i++){
+                $row = mysqli_fetch_array($result1);
+
+                if($username === $row['username'] && $password === $row['password']){
+                    $id = $row['userkey'];
+                    $exist = true;
+                    $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
+                    $resultupd = mysqli_query($db, $queryupd);
+
+                    if($resultupd){
+                            header("location:dashboard/admin-account.php?id=$id");
+                    }
+                }
+            }
         }
         
 

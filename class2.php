@@ -85,7 +85,7 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <?php echo "<a href='home.php?id=$id' class='logo d-flex align-items-center'>";?>
             <h1 class="sitename"><span>N</span>ajifunza</h1>
         </a>
 
@@ -116,19 +116,6 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
-
-      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-5">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <?php echo "<h2>Form $class Subjects</h2>";?>
-          </div>
-          <div class="col-lg-6 order-1 order-lg-2">
-            <?php
-              echo "<img src='media/images/class$class.png' class='class' alt='Najifunza Logo'><br><br>";
-            ?>
-          </div>
-        </div>
-      </div>
 
       <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200" id="options">
         <div class="container position-relative">

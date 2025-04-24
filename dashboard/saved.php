@@ -200,6 +200,13 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
+            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <i class="bi bi-person"></i>
+            <span>My Classes</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
             <?php echo "<a class='nav-link ' href='saved.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>Saved</span>

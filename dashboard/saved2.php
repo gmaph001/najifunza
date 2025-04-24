@@ -119,7 +119,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-        <?php echo "<a href='../home.php?id=$id' class='logo d-flex align-items-center'>";?>
+        <?php echo "<a href='check_user.php?id=$id' class='logo d-flex align-items-center'>";?>
             <img src="../media/images/najifunza-logo.png" alt="">
             <span class="d-none d-lg-block">Najifunza</span>
         </a>
@@ -225,6 +225,13 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
+            <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
+            <i class="bi bi-person"></i>
+            <span>Other Notes</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Exams</span>
@@ -235,6 +242,13 @@
             <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Announcements</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
+            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <i class="bi bi-person"></i>
+            <span>My Classes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 

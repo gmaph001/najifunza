@@ -73,7 +73,7 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
+            <?php echo "<a href='home.php?id=$id' class='logo d-flex align-items-center'>";?>
                 <h1 class="sitename"><span>N</span>ajifunza</h1>
             </a>
 
@@ -87,7 +87,6 @@
                             <li><a href='students.php?id=$id'>Notes</a></li>
                             <li><a href='exams.ph'?id=$id'>Exams</a></li>
                             <li><a href='contact2.php?id=$id'>Contact</a></li>
-                            <li><a href='classes.php?id=$id'>My Classes</a></li>
                             <li><a href='logout.php?id=$id' class='logout-btn'>Logout</a></li>
                         ";
                     ?>
@@ -113,33 +112,11 @@
                     Save your educational materials and access them anywhere, anytime.
                 </p>
                 <div class="d-flex">
-                <a href="#options" class="btn-get-started">Get Started</a>
+                    <?php echo "<a href='students.php?id=$id' class='btn-get-started'>Get Started</a>";?>
                 </div>
             </div>
             <div class="col-lg-6 order-1 order-lg-2">
                 <img src="media/images/najifunza.png" class="img-fluid" alt="Najifunza Logo">
-            </div>
-            </div>
-        </div>
-
-        <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200" id="options">
-            <div class="container position-relative">
-            <div class="row gy-4 mt-5">
-
-                <div class="col-xl-3 col-md-6">
-                <div class="icon-box">
-                    <div class="icon"><i class="bi bi-easel"></i></div>
-                    <?php echo "<h4 class='title'><a href='teachers.php?id=$id#options' class='stretched-link'>Teachers</a></h4>";?>
-                </div>
-                </div><!--End Icon Box -->
-
-                <div class="col-xl-3 col-md-6">
-                <div class="icon-box">
-                    <div class="icon"><i class="bi bi-person"></i></div>
-                    <?php echo "<h4 class='title'><a href='students.php?id=$id#options' class='stretched-link'>Students</a></h4>";?>
-                </div>
-                </div><!--End Icon Box -->
-                
             </div>
             </div>
         </div>

@@ -73,7 +73,7 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
+            <?php echo "<a href='home.php?id=$id' class='logo d-flex align-items-center'>";?>
                 <h1 class="sitename"><span>N</span>ajifunza</h1>
             </a>
 
@@ -87,7 +87,6 @@
                             <li><a href='students.php?id=$id' class='active'>Notes</a></li>
                             <li><a href='exams.php?id=$id'>Exams</a></li>
                             <li><a href='contact2.php?id=$id'>Contact</a></li>
-                            <li><a href='classes.php?id=$id'>My Classes</a></li>
                             <li><a href='logout.php?id=$id' class='logout-btn'>Logout</a></li>
                         ";
                     ?>
@@ -108,7 +107,7 @@
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-5">
             <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                <h2>Students</h2>
+                <h2>Notes</h2>
                 <div class="d-flex">
                     <a href="#options" class="btn-get-started">Continue</a>
                 </div>
