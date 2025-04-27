@@ -166,8 +166,8 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>TOPICS</h2>
-                <div><span>Check Our</span> <span class="description-title">Topics</span></div>
+                <h2>NOTES</h2>
+                <div><span>Check Our</span> <span class="description-title">Notes</span></div>
             </div><!-- End Section Title -->
 
             <div class="container">

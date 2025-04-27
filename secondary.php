@@ -122,14 +122,14 @@
                 <div class="col-xl-3 col-md-6">
                 <div class="icon-box">
                     <div class="icon"><i class="bi bi-person-fill"></i></div>
-                    <?php echo "<h4 class='title'><a href='teachers.php?id=$id#options' class='stretched-link'>Vocational Training</a></h4>";?>
+                    <?php echo "<h4 class='title'><a href='teachers.php?id=$id#options' class='stretched-link'>Vocational Education</a></h4>";?>
                 </div>
                 </div><!--End Icon Box -->
 
                 <div class="col-xl-3 col-md-6">
                 <div class="icon-box">
                     <div class="icon"><i class="bi bi-person"></i></div>
-                    <?php echo "<h4 class='title'><a href='secular2.php?id=$id&&lev=2&&cat=secular#options' class='stretched-link'>Secular Education</a></h4>";?>
+                    <?php echo "<h4 class='title'><a href='secular2.php?id=$id&&lev=2&&cat=secular#options' class='stretched-link'>General Education</a></h4>";?>
                 </div>
                 </div><!--End Icon Box -->
                 

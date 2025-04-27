@@ -248,8 +248,8 @@
                                     <div class="form-floating mb-3 category">
                                         <select class="form-select" id="category" aria-label="State" name="cat" onclick="levelize()">
                                             <option selected value="none">Choose category</option>
-                                            <option value="secular">Secular</option>
-                                            <option value="vocational">Vocational Training</option>
+                                            <option value="secular">General</option>
+                                            <option value="vocational">Vocational</option>
                                         </select>
                                         <label for="floatingSelect">Level</label>
                                     </div>

@@ -60,7 +60,7 @@
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h2>Secular Classes</h2>
+            <h2>General Classes</h2>
           </div>
           <div class="col-lg-6 order-1 order-lg-2">
             <img src="media/images/najifunza.png" class="img-fluid" alt="Najifunza Logo">
