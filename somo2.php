@@ -153,10 +153,7 @@
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-5">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <?php echo "<h2>$subject</h2>";?>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2">
-                    <?php echo "<img src='media/images/$somo.jpg' class='somo-pic' alt='$subject Pic'><br><br>";?>
+                        <?php echo "<h2>$subject</h2>";?>
                     </div>
                 </div>
                 </div>
@@ -184,11 +181,8 @@
                             <div class='col-lg-3 col-md-6' data-aos='zoom-in' data-aos-delay='100'>
                                 <div class='pricing-tem'>
                                     <h3 style='color: #20c997;'>$poster[$i]</h3>
-                                    <div class='icon'>
-                                        <i class='bi' style='color: #20c997;'><img src='$posterdp[$i]' class='profile'></i>
-                                    </div>
                                     <ul>
-                                        <h2>Description</h2>
+                                        <h2><b>Description</b></h2>
                                         <li>$description[$i]</li>
                                     </ul>
                                     <a href='$notes[$i]' class='btn-buy'>Read Now</a><br>

@@ -1599,8 +1599,14 @@ section,
     background-color: var(--btn-download-color);
     color: white;
   }
+  .pricing .btn-buy{
+    padding: 1vh 15vw;
+  }
   .save{
-    padding: 1vh 10vw;
+    padding: 1vh 20vw;
+  }
+  .saved{
+    padding: 1vh 20vw;
   }
 }
 }
