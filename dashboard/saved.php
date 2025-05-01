@@ -277,8 +277,10 @@
                                                 <h3>$subject[$i]</h3>
                                                 <h5 class='card-title'><b>Description</b></h5>
                                                 <p class='card-text'>$description[$i]</p>
-                                                <p class='card-text'><a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a></p>
-                                                <p class='card-text'><a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary delete'>Remove</a></p>
+                                                <div class='top_btns'>
+                                                    <a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a>
+                                                    <a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary remove'>Remove</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- End Card with an image on top -->
@@ -319,8 +321,10 @@
                                             <div class='card-body'>
                                                 <h5 class='card-title'><b>Description</b></h5>
                                                 <p class='card-text'>$description[$i]</p>
-                                                <p class='card-text'><a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a></p>
-                                                <p class='card-text'><a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary delete'>Remove</a></p>
+                                                <div class='top_btns'>
+                                                    <a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a>
+                                                    <a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary remove'>Remove</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- End Card with an image on top -->
@@ -361,8 +365,10 @@
                                             <div class='card-body'>
                                                 <h5 class='card-title'><b>Description</b></h5>
                                                 <p class='card-text'>$description[$i]</p>
-                                                <p class='card-text'><a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a></p>
-                                                <p class='card-text'><a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary delete'>Remove</a></p>
+                                                <div class='top_btns'>
+                                                    <a href='../$notes[$i]' target='_blank' class='btn btn-primary'>Preview</a>
+                                                    <a href='delete_saved.php?id=$id&&key=$key[$i]' class='btn btn-primary remove'>Remove</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- End Card with an image on top -->

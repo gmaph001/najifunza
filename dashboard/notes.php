@@ -279,7 +279,16 @@
                         $somo = strtolower($subject[$i]);
                         echo
                         "
-                            
+                                <div class='popUp' id='$i'>
+                                    <div class='delete_popUp'>
+                                        <p>Are you sure you want to delete these<br> <b>$subject[$i]</b><br> notes with description:<br> <b>$description[$i]</b>?</p>
+
+                                        <div class='top_btns'>
+                                            <a href='delete_notes.php?id=$id&&key=$key[$i]' class='btn btn-primary remove'>Yes, delete</a>
+                                            <a class='btn btn-primary edit' onclick='showdown($i)'>No</a>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Card with an image on top -->
                                 <div class='card'>
@@ -288,8 +297,11 @@
                                         <h3><b>$subject[$i]</b></h3>
                                         <h5 class='card-title'>Description</h5>
                                         <p class='card-text'>$description[$i]</p>
-                                        <p class='card-text'><a href='../$notes[$i]' class='btn btn-primary'>Preview</a></p>
-                                        <p class='card-text'><a href='delete_notes.php?id=$id&&key=$key[$i]' class='btn btn-primary delete'>Delete</a></p>
+                                        <div class='top_btns'>
+                                            <a href='../$notes[$i]' class='btn btn-primary'>Preview</a>
+                                            <a href='edit_notes.php?id=$id&&key=$key[$i]' class='btn btn-primary edit'>Edit</a>
+                                        </div>
+                                        <p class='card-text'><a onclick='showup($i)' class='btn btn-primary delete'>Delete</a></p>
                                     </div>
                                 </div>
                                 <!-- End Card with an image on top -->
@@ -360,6 +372,23 @@
                 }
             })
         })    
+    </script>
+
+    <script>
+        function showup(a){
+            let id = a;
+            let popup = document.getElementById(id);
+
+            popup.style.display = "block";
+        }
+
+        function showdown(a){
+            let id = a;
+            let popup = document.getElementById(id);
+
+            popup.style.display = "none";
+        }
+    
     </script>
 
 

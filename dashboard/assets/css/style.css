@@ -1333,15 +1333,71 @@ h6 {
 .subject-photo{
   height: 180px;
 }
+.top_btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  padding: 2vh 0px;
+}
+.edit{
+  background-color: rgb(0, 173, 0);
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: 0.4s ease-in-out;
+  box-shadow: 0px 0px 3px 3px rgba(255, 0, 0, 0);
+}
+.edit:hover{
+  background-color: rgb(0, 102, 0);
+  color: rgb(255, 254, 254);
+}
 .delete{
+  width: 98%;
   background-color: red;
   border: none;
+  font-weight: bold;
+  transition: 0.4s ease-in-out;
   box-shadow: 0px 0px 3px 3px rgba(255, 0, 0, 0);
 }
 .delete:hover{
   background-color: white;
   color: red;
   box-shadow: 0px 0px 3px 3px rgba(255, 0, 0, 0.363);
+}
+.remove{
+  background-color: red;
+  border: none;
+  font-weight: bold;
+  transition: 0.4s ease-in-out;
+  box-shadow: 0px 0px 3px 3px rgba(255, 0, 0, 0);
+}
+.remove:hover{
+  background-color: white;
+  color: red;
+  box-shadow: 0px 0px 3px 3px rgba(255, 0, 0, 0.363);
+}
+.popUp{
+  display: none;
+  top: 0;
+  padding: 35vh 0vw;
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.526);
+}
+.delete_popUp{
+  background-color: aliceblue;
+  border-radius: 20px;
+  padding: 5vh 2vw;
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.delete_popUp p{
+  text-align: center;
 }
 
 .msingi, 
@@ -1390,5 +1446,12 @@ h6 {
   #result{
     width: 90vw;
     top: 20vh;
+  }
+  .popUp{
+    padding: 35vh 0vw;
+  }
+  .delete_popUp{
+    width: 85vw;
+    padding: 5vh 5vw;
   }
 }

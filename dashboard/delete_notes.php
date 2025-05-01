@@ -62,7 +62,28 @@
                         $result = mysqli_query($db, $query);
 
                         if($result){
-                            header("location:notes.php?id=$id");
+                            $query2 = "SELECT * FROM saved";
+                            $result2 = mysqli_query($db, $query2);
+
+                            if($result2){
+                                for($i=0; $i<mysqli_num_rows($result2); $i++){
+                                    $row = mysqli_fetch_array($result2);
+
+                                    if($row['category'] === "notes"){
+                                        if($key === $row['saved_key']){
+                                            $query3 = "DELETE FROM saved WHERE saved_key = '$key'";
+                                            $result3 = mysqli_query($db, $query3);
+
+                                            if($result3){
+                                                header("location:notes.php?id=$id");
+                                            }
+                                            else{
+                                                echo "Error while updating saved contents!";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         else{
                             echo "Error while deleting notes!";
