@@ -229,8 +229,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Address" id="desribe" name="descript" style="height: 100px;" required></textarea>
-                                        <label for="floatingTextarea">Description</label>
+                                        <textarea class="form-control" id="desribe" name="descript" style="height: 100px;" required></textarea>
+                                        <label for="floatingTextarea">Description (Please type the chapter or topic of the notes you want to share)</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -310,6 +310,8 @@
                                             <option value="Kiswahili">Kiswahili</option>
                                             <option value="Civics">Civics</option>
                                             <option value="Computer Science">Computer Studies</option>
+                                            <option value="Book Keeping">Book Keeping</option>
+                                            <option value="Commerce">Commerce</option>
                                         </select>
                                         <label for="floatingSelect">Subject</label>
                                     </div>
@@ -339,7 +341,7 @@
                                 <div class="col-md-12">
                                     <div class="form-floating">
                                         <input type="file" class="form-control" name="notes" id="floatingName" required>
-                                        <label for="floatingName">Your File</label>
+                                        <label for="floatingName">Your File (In pdf)</label>
                                     </div>
                                 </div>
                                 <div class="text-center">

@@ -58,6 +58,31 @@
 
                         $key = $_GET['key'];
 
+                        $success = false;
+                        $success2 = false;
+
+                        $message = "none";
+
+                        $querydel = "SELECT * FROM notes";
+                        $resultdel = mysqli_query($db, $querydel);
+
+                        if($resultdel){
+                            for($i=0; $i<mysqli_num_rows($resultdel); $i++){
+                                $row = mysqli_fetch_array($resultdel);
+
+                                if($key === $row['notes_key']){
+                                    $notes = $row['notes'];
+
+                                    if(file_exists("../".$notes)){
+                                        unlink("../".$notes);
+                                    }
+                                    else{
+                                        $message = "File not found!";
+                                    }
+                                }
+                            }
+                        }
+
                         $query = "DELETE FROM notes WHERE notes_key = '$key'";
                         $result = mysqli_query($db, $query);
 
@@ -74,11 +99,8 @@
                                             $query3 = "DELETE FROM saved WHERE saved_key = '$key'";
                                             $result3 = mysqli_query($db, $query3);
 
-                                            if($result3){
-                                                header("location:notes.php?id=$id");
-                                            }
-                                            else{
-                                                echo "Error while updating saved contents!";
+                                            if(!$result3){
+                                                $message = "Error while updating saved contents!";
                                             }
                                         }
                                     }
@@ -86,7 +108,14 @@
                             }
                         }
                         else{
-                            echo "Error while deleting notes!";
+                            $message = "Error while deleting notes!";
+                        }
+
+                        if($message === "none"){
+                            header("location:notes.php?id=$id");
+                        }
+                        else{
+                            echo $message;
                         }
                     ?>
                 </p>

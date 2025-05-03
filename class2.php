@@ -45,7 +45,7 @@
   $class = $_GET['class'];
 
   if($class<=4){
-    $subjects = ["Mathematics", "Physics", "Computer Science", "Chemistry", "Biology", "Geography", "Kiswahili", "English"];
+    $subjects = ["Mathematics", "Physics", "Computer Science", "Chemistry", "Biology", "Geography", "History", "Civics", "Book Keeping", "Commerce", "Kiswahili", "English"];
   }
   else{
     $subjects = ["Mathematics", "Physics", "Computer Science", "Chemistry", "Biology", "Geography", "Kiswahili", "English", "Accounts", "Business Studies", "Economics", "Commerce", "History", "Historia na Maadili", "Communication Skills"];
