@@ -69,6 +69,9 @@
                 $message = "Incorrect username/password! Please, <br> <a href='login.html'><b><i>Try Again!</i></b></a>";
             }
         }
+        else{
+            echo $message;
+        }
 
     }
 ?>

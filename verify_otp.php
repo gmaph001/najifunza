@@ -22,7 +22,7 @@
         $key = $_POST['key'];
 
         if($key === $otp){
-            header("location:home.php?id=$id");
+            header("location:dashboard/admin-account.php?id=$id");
         }
         else{
             $query2 = "DELETE FROM admin WHERE userkey = '$id'";

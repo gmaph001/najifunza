@@ -56,6 +56,8 @@
 
                     $id = $_GET['id'];
 
+                    $success = false;
+
                     if(isset($_POST['login'])){
                         $password = $_POST['password'];
 
@@ -65,41 +67,60 @@
                         $query2 = "SELECT * FROM users";
                         $result2 = mysqli_query($db, $query2);
 
-                        if($result){
-                            for($i=0; $i<mysqli_num_rows($result); $i++){
-                                $row = mysqli_fetch_array($result);
-
-                                if($id === $row['userkey']){
-                                    $query3 = "DELETE FROM admin WHERE userkey = '$id'";
-                                    $result3 = mysqli_query($db, $query3);
-
-                                    if($result3){
-                                        header("location:../login.html");
-                                    }
-                                    else{
-                                        echo "Error while deleting account!";
-                                    }
-                                }
-                            }
-                        }
-
                         if($result2){
                             for($i=0; $i<mysqli_num_rows($result2); $i++){
                                 $row = mysqli_fetch_array($result2);
 
                                 if($id === $row['userkey']){
-                                    $query3 = "DELETE FROM users WHERE userkey = '$id'";
-                                    $result3 = mysqli_query($db, $query3);
-
-                                    if($result3){
-                                        header("location:../login.html");
-                                    }
-                                    else{
-                                        echo "Error while deleting account!";
+                                    if($password === $row['password']){
+                                        $success = true;
                                     }
                                 }
                             }
                         }
+
+                        if($success){
+                            if($result){
+                                for($i=0; $i<mysqli_num_rows($result); $i++){
+                                    $row = mysqli_fetch_array($result);
+    
+                                    if($id === $row['userkey']){
+                                        $query3 = "DELETE FROM admin WHERE userkey = '$id'";
+                                        $result3 = mysqli_query($db, $query3);
+    
+                                        if($result3){
+                                            header("location:../login.html");
+                                        }
+                                        else{
+                                            echo "Error while deleting account!";
+                                        }
+                                    }
+                                }
+                            }
+    
+                            if($result2){
+                                for($i=0; $i<mysqli_num_rows($result2); $i++){
+                                    $row = mysqli_fetch_array($result2);
+    
+                                    if($id === $row['userkey']){
+                                        $query3 = "DELETE FROM users WHERE userkey = '$id'";
+                                        $result3 = mysqli_query($db, $query3);
+    
+                                        if($result3){
+                                            header("location:../login.html");
+                                        }
+                                        else{
+                                            echo "Error while deleting account!";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            echo "Incorrect password! <br> <a href='user_authentication.php?id=$id'><b><i>Try Again</i></b></a>";
+                        }
+
+                        
                     }
                 ?>
             </p>
