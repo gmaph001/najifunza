@@ -83,11 +83,6 @@
                                 $file = $_FILES['notes']['tmp_name'];
                                 $name = $_FILES['notes']['name'];
 
-                                $folder = "../media/documents/notes/".$name;
-                                $notes = "media/documents/notes/".$name;
-
-                                $success = move_uploaded_file($file, $folder);
-
                                 $key = rand(100000000, 999999999);
 
                                 $query0 = "SELECT * FROM notes";
@@ -102,6 +97,13 @@
                                         }
                                     }
                                 }
+
+                                $filename = "notes_$key";
+
+                                $folder = "../media/documents/notes/".$filename;
+                                $notes = "media/documents/notes/".$filename;
+
+                                $success = move_uploaded_file($file, $folder);
 
                                 if($success){
                                     $query = "INSERT INTO notes(poster, poster_ID, subject, notes, level, category, class, description, notes_key) VALUES('$poster', '$id', '$subject', '$notes', '$level', '$category', '$class', '$description', '$key')";

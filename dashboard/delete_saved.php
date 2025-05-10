@@ -7,6 +7,8 @@
     $id = $_GET['id'];
     $key = $_GET['key'];
 
+    $exist = false;
+
     $query = "SELECT * FROM saved";
     $result = mysqli_query($db, $query);
 
@@ -19,11 +21,29 @@
                 $result2 = mysqli_query($db, $query2);
 
                 if($result2){
-                    header("location:saved.php?id=$id");
+                    $query3 = "SELECT * FROM admin";
+                    $result3 = mysqli_query($db, $query3);
+
+                    if($result3){
+                        for($j=0; $j<mysqli_num_rows($result3); $j++){
+                            $row2 = mysqli_fetch_array($result3);
+
+                            if($row2['userkey'] === $id){
+                                $exist = true;
+                            }
+                        }
+                    }
                 }
                 else{
                     echo "Error while removing your saved material!";
                 }
             }
+        }
+
+        if($exist){
+            header("location:saved2.php?id=$id");
+        }
+        else{
+            header("location:saved.php?id=$id");
         }
     }

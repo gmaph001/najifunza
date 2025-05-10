@@ -236,12 +236,13 @@
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                 <div class="col-md-8 col-lg-9">
                                     <?php echo "<img src='../$dp' alt='Profile' class='picha'><br><br>";?>
-                                    <input type="file" class="form-control" id="profileImage" name="photo" required>
+                                    <input type="file" class="form-control" id="profileImage" name="photo" required onchange="checksize()" accept=".jpg,.png,.jpeg">
+                                    <p class="alert" id="photoresponse"></p>
                                 </div>
                                 </div>
 
                                 <div class="text-center">
-                                <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
+                                    <button type="submit" name="update" onclick="subgo()" class="btn btn-primary">Save Changes</button>
                                 </div>
                             </form>
                             <!-- End Profile Edit Form -->
@@ -283,6 +284,48 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+
+        function checksize(){
+            let photo = document.getElementById("profileImage")
+            let ukubwa = Math.round(photo.files[0].size/1024/1024);
+
+            if(ukubwa>1){
+                document.getElementById("photoresponse").innerHTML = "*Your photo should be less than 1 MB!*";
+                return false;
+            }
+            else{
+                let name = photo.value;
+
+                let type = "";
+
+                for(let i=name.length-4; i<name.length; i++){
+                    type += name[i];
+                }
+
+                if(type === ".jpg" || type === ".png" || type === "jpeg"){
+                    document.getElementById("photoresponse").innerHTML = "";
+                    return true;
+                }
+                else{
+                    document.getElementById("photoresponse").innerHTML = `*${type} format not allowed (Only png/jpeg/jpg allowed)!*`;
+                    return false;
+                }
+            }
+        }
+
+        function subgo(){
+            if(!checksize()){
+                event.preventDefault();
+            }
+            else{
+                document.getElementById("photoresponse").innerHTML = "";
+                return true;
+            }
+        }
+
+    </script>
 
 </body>
 

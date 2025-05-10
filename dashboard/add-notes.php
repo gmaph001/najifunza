@@ -340,9 +340,10 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-floating">
-                                        <input type="file" class="form-control" name="notes" id="floatingName" required>
+                                        <input type="file" class="form-control" name="notes" id="notesfile" required accept=".pdf" onchange="checkpdf()">
                                         <label for="floatingName">Your File (In pdf)</label>
                                     </div>
+                                    <p class="alert" id="typealert"></p>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary" name="submit" onclick="kagua()">Submit</button>

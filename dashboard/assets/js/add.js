@@ -78,6 +78,28 @@ function checksomo(){
     }
 }
 
+function checkpdf(){
+    let file = document.getElementById("notesfile").value;
+
+    let type = "";
+
+    for(let i=file.length-3; i<file.length; i++){
+        type += file[i];
+    }
+
+    console.log(type);
+
+    if(type === "pdf"){
+        document.getElementById("typealert").innerHTML = "";
+        return true;
+    }
+    else{
+        document.getElementById("typealert").innerHTML = "*Only pdf format allowed!*";
+        return false;
+    }
+
+}
+
 function kagua(){
     if(document.getElementById("level").value === "none"){
         alert("Please choose the level!")
@@ -99,5 +121,13 @@ function kagua(){
     if(document.getElementById("category").value === "none"){
         alert("Please choose Category!");
         event.preventDefault();
+    }
+
+    if(!checkpdf()){
+        document.getElementById("typealert").innerHTML = "*Only pdf format allowed!*";
+        event.preventDefault();
+    }
+    else{
+        document.getElementById("typealert").innerHTML = "";
     }
 }
