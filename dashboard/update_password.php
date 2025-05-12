@@ -73,9 +73,12 @@
                             for($i=0; $i<mysqli_num_rows($result); $i++){
                                 $row = mysqli_fetch_array($result);
 
+                                $hashed = $row['password'];
+
                                 if($id === $row['userkey']){
-                                    if($old === $row['password']){
-                                        $query2 = "UPDATE admin SET password = '$new' WHERE userkey = '$id'";
+                                    if(password_verify($old, $hashed)){
+                                        $password = password_hash($new, PASSWORD_DEFAULT);
+                                        $query2 = "UPDATE admin SET password = '$password' WHERE userkey = '$id'";
                                         $result2 = mysqli_query($db, $query2);
 
                                         if($result2){
@@ -95,13 +98,15 @@
                             for($i=0; $i<mysqli_num_rows($result3); $i++){
                                 $row = mysqli_fetch_array($result3);
 
-                                if($id === $row['userkey']){
-                                    echo "working";
-                                    if($old === $row['password']){
-                                        $query4 = "UPDATE users SET password = '$new' WHERE userkey = '$id'";
-                                        $result4 = mysqli_query($db, $query4);
+                                $hashed = $row['password'];
 
-                                        if($result4){
+                                if($id === $row['userkey']){
+                                    if(password_verify($old, $hashed)){
+                                        $password = password_hash($new, PASSWORD_DEFAULT);
+                                        $query2 = "UPDATE users SET password = '$password' WHERE userkey = '$id'";
+                                        $result2 = mysqli_query($db, $query2);
+
+                                        if($result2){
                                             $fine2 = true;
                                         }
                                         else{

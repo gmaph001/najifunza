@@ -57,6 +57,8 @@
                     $id = $_GET['id'];
 
                     $success = false;
+                    $success2 = false;
+                    $success3 = false;
 
                     if(isset($_POST['login'])){
                         $password = $_POST['password'];
@@ -71,8 +73,10 @@
                             for($i=0; $i<mysqli_num_rows($result2); $i++){
                                 $row = mysqli_fetch_array($result2);
 
+                                $hashed = $row['password'];
+
                                 if($id === $row['userkey']){
-                                    if($password === $row['password']){
+                                    if(password_verify($password, $hashed)){
                                         $success = true;
                                     }
                                 }
@@ -89,7 +93,7 @@
                                         $result3 = mysqli_query($db, $query3);
     
                                         if($result3){
-                                            header("location:../login.html");
+                                            $success2 = true;
                                         }
                                         else{
                                             echo "Error while deleting account!";
@@ -107,7 +111,7 @@
                                         $result3 = mysqli_query($db, $query3);
     
                                         if($result3){
-                                            header("location:../login.html");
+                                            $success3 = true;
                                         }
                                         else{
                                             echo "Error while deleting account!";
@@ -116,10 +120,14 @@
                                 }
                             }
                         }
-                        else{
-                            echo "Incorrect password! <br> <a href='user_authentication.php?id=$id'><b><i>Try Again</i></b></a>";
-                        }
+                        
 
+                        if($success2 || $success3){
+                            header("location:../login.html");
+                        }
+                        else{
+                            echo "Incorrect Password! Please, <br> <a href='user_authentication.php?id=$id'>Try Again</a>";
+                        }
                         
                     }
                 ?>
