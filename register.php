@@ -65,6 +65,8 @@
                         $checkqr = "SELECT * FROM users";
                         $checkres = mysqli_query($db, $checkqr);
 
+                        $hashed = password_hash($password, PASSWORD_DEFAULT);
+
                         if(mysqli_num_rows($checkres)>0){
                             for($i=0; $i<mysqli_num_rows($checkres); $i++){
                                 $row = mysqli_fetch_array($checkres);
@@ -99,7 +101,7 @@
                             }
                         }
                         else{
-                            $query2 = "INSERT INTO users(username, email, password, userkey, photo, security) VALUES('$username', '$email', '$password', '$userkey', '$photo', '$ip')";
+                            $query2 = "INSERT INTO users(username, email, password, userkey, photo, security) VALUES('$username', '$email', '$hashed', '$userkey', '$photo', '$ip')";
                             $result2 = mysqli_query($db, $query2);
 
                             if($result2){
@@ -113,7 +115,7 @@
                         }
 
                         if(!$exist){
-                            $query3 = "INSERT INTO users(username, email, password, userkey, photo, security) VALUES('$username', '$email', '$password', '$userkey', '$photo', '$ip')";
+                            $query3 = "INSERT INTO users(username, email, password, userkey, photo, security) VALUES('$username', '$email', '$hashed', '$userkey', '$photo', '$ip')";
                             $result3 = mysqli_query($db, $query3);
 
                             if($result3){

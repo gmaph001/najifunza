@@ -30,14 +30,18 @@
             for($i=0; $i<mysqli_num_rows($result2); $i++){
                 $row = mysqli_fetch_array($result2);
 
-                if($username === $row['username'] && $password === $row['password']){
-                    $id = $row['userkey'];
-                    $exist = true;
-                    $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
-                    $resultupd = mysqli_query($db, $queryupd);
+                $hashed = $row['password'];
 
-                    if($resultupd){
-                        header("location:home.php?id=$id");
+                if($username === $row['username']){
+                    if(password_verify($password, $hashed)){
+                        $id = $row['userkey'];
+                        $exist = true;
+                        $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
+                        $resultupd = mysqli_query($db, $queryupd);
+
+                        if($resultupd){
+                            header("location:home.php?id=$id");
+                        }
                     }
                 }
             }
@@ -50,14 +54,18 @@
             for($i=0; $i<mysqli_num_rows($result1); $i++){
                 $row = mysqli_fetch_array($result1);
 
-                if($username === $row['username'] && $password === $row['password']){
-                    $id = $row['userkey'];
-                    $exist = true;
-                    $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
-                    $resultupd = mysqli_query($db, $queryupd);
+                $hashed = $row['password'];
 
-                    if($resultupd){
-                            header("location:dashboard/admin-account.php?id=$id");
+                if($username === $row['username']){
+                    if(password_verify($password, $hashed)){
+                        $id = $row['userkey'];
+                        $exist = true;
+                        $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
+                        $resultupd = mysqli_query($db, $queryupd);
+
+                        if($resultupd){
+                            header("location:dashboard/check_user.php?id=$id");
+                        }
                     }
                 }
             }
