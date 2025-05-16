@@ -46,14 +46,15 @@
         <div class="login-form">
 
             <!-- Login Form -->
-            <form class='login' action='admin_register.php?id=$id' method='POST' enctype='multipart/form-data'>"
-                <center><h2>Admin Confirmation</h2></center>
+            <form class='login' action='send_otp.php' method='POST' enctype='multipart/form-data'>"
+                <center><h2>User Confirmation</h2></center>
+                <p>Please, input your email to receive OTP!</p>
                 <div class="inputs">
-                    <label for="inputNanme4" class="form-label">Enter OTP Key</label>
-                    <input type="number" name="key" class="form-control" id="otp" required>
+                    <label for="inputNanme4" class="form-label">Enter your Email</label>
+                    <input type="email" name="email" class="form-control" required>
                 </div>
                 <div class="login-btns">
-                    <button type="submit" name="login" class="btn submit" onclick="jiunge()">Verify OTP</button>
+                    <button type="submit" name="login" class="btn submit">Verify Email</button>
                 </div>
             </form>
             <!-- Login Form -->

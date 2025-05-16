@@ -84,49 +84,38 @@
                         }
 
                         if($success){
-                            if($result){
+                            $query3 = "DELETE FROM users WHERE userkey = '$id'";
+                            $result3 = mysqli_query($db, $query3);
+
+                            if($result3){
+                                $success2 = true;
+
                                 for($i=0; $i<mysqli_num_rows($result); $i++){
-                                    $row = mysqli_fetch_array($result);
-    
-                                    if($id === $row['userkey']){
-                                        $query3 = "DELETE FROM admin WHERE userkey = '$id'";
-                                        $result3 = mysqli_query($db, $query3);
-    
-                                        if($result3){
-                                            $success2 = true;
-                                        }
-                                        else{
-                                            echo "Error while deleting account!";
-                                        }
-                                    }
-                                }
-                            }
-    
-                            if($result2){
-                                for($i=0; $i<mysqli_num_rows($result2); $i++){
-                                    $row = mysqli_fetch_array($result2);
-    
-                                    if($id === $row['userkey']){
-                                        $query3 = "DELETE FROM users WHERE userkey = '$id'";
-                                        $result3 = mysqli_query($db, $query3);
-    
-                                        if($result3){
+                                    $row2 = mysqli_fetch_array($result);
+
+                                    if($row2['userkey'] === $id){
+                                        $query4 = "DELETE FROM admin WHERE userkey = '$id'";
+                                        $result4 = mysqli_query($db, $query4);
+
+                                        if($result4){
                                             $success3 = true;
                                         }
                                         else{
-                                            echo "Error while deleting account!";
+                                            echo "Error while deleting your account! <br> Please, contact admin!";
                                         }
                                     }
                                 }
                             }
+                            else{
+                                echo "Error while deleting your account! <br> Please, contact admin!";
+                            }
                         }
-                        
+                        else{
+                            echo "Incorrect password! Please, <br> <a href='user_authentication.php?id=$id'><b><i>Try Again</i></b></a>";
+                        }
 
                         if($success2 || $success3){
                             header("location:../login.html");
-                        }
-                        else{
-                            echo "Incorrect Password! Please, <br> <a href='user_authentication.php?id=$id'>Try Again</a>";
                         }
                         
                     }
