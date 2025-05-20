@@ -2,6 +2,9 @@
 
     require "connect.php";
 
+    session_unset();
+    session_destroy();
+
     $id = $_GET['id'];
     $nothing = "out";
 

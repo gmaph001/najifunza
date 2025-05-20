@@ -39,6 +39,13 @@
                         $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
                         $resultupd = mysqli_query($db, $queryupd);
 
+                        session_start();
+                        session_regenerate_id(true);
+                        session_set_cookie_params(0);
+
+                        $_SESSION['userkey'] = $id;
+                        $_SESSION['userID'] = $_SERVER['HTTP_USER_AGENT'];
+
                         if($resultupd){
                             header("location:home.php?id=$id");
                         }

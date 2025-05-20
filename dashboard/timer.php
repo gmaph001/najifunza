@@ -1,7 +1,5 @@
 <?php
 
-    require "address.php";
-
     $id = $_GET['id'];
 
 ?>
@@ -24,5 +22,5 @@
         window.location.href = "<?php echo "../logout.php?id=$id";?>";
     }
 
-    setTimeout(logoutUser, 36000000);
+    setTimeout(logoutUser, 600000);
 </script>

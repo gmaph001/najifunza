@@ -4,6 +4,7 @@
     require "timer.php";
 
     $id = $_GET['id'];
+    $class = $_GET['class'];
 
     $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
@@ -29,6 +30,22 @@
     $initial = str_split($firstname);
 
     $init = $initial[0];
+
+    $query2 = "SELECT * FROM classes";
+    $result2 = mysqli_query($db, $query2);
+
+    if($result2){
+        for($i=0; $i<mysqli_num_rows($result2); $i++){
+            $row = mysqli_fetch_array($result2);
+
+            if($class === $row['class_key']){
+                $classname = $row['class_name'];
+                $classphoto = $row['class_photo'];
+                $create_date = $row['create_date'];
+                $creator = $row['creator'];
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,51 +171,44 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link ' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
             <span>Home</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='class_notes.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Notes</span>
+            <span>Class Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>Other Notes</span>
+            <span>Class Assignments</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Exams</span>
+            <span>Class Exams</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Announcements</span>
+            <span>Class Announcements</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='class.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Classes</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>Saved</span>
+            <span>Class Projects</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
@@ -209,7 +219,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>Class Profile</h1>
         </div><!-- End Page Title -->
 
         <section class="section profile">
@@ -219,19 +229,9 @@
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                <?php echo "<img src='../$dp' alt='Profile' class='picha'>";?>
+                <?php echo "<img src='../$classphoto' alt='Profile' class='picha'>";?>
                 <?php
-                        echo "<h2>$firstname $lastname</h2>";
-
-                        if($codename === "TEA"){
-                            echo "<h3>Teacher</h3>";
-                        }
-                        else if($codename === "ADM"){
-                            echo "<h3>Admin</h3>";
-                        }
-                        else if($codename === "PRM"){
-                            echo "<h3>Premium User</h3>";
-                        }
+                        echo "<h2>$classname</h2>";
                 ?>
         
                 </div>
@@ -247,19 +247,15 @@
                 <ul class="nav nav-tabs nav-tabs-bordered">
 
                     <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                     </li>
 
                     <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                     </li>
 
                     <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                    </li>
-
-                    <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Email/Username</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                     </li>
 
                 </ul>
@@ -273,27 +269,27 @@
                         echo 
                         "
                             <div class='row'>
-                                <div class='col-lg-3 col-md-4 label '>Full Name</div>
-                                <div class='col-lg-9 col-md-8'>$firstname $secondname $lastname</div>
+                                <div class='col-lg-3 col-md-4 label '>Class Name</div>
+                                <div class='col-lg-9 col-md-8'>$classname</div>
                             </div>
 
                             <div class='row'>
-                                <div class='col-lg-3 col-md-4 label'>School</div>
-                                <div class='col-lg-9 col-md-8'>$school</div>
+                                <div class='col-lg-3 col-md-4 label'>Created By</div>
+                                <div class='col-lg-9 col-md-8'>$username </div>
                             </div>
 
                             <div class='row'>
-                                <div class='col-lg-3 col-md-4 label'>Username</div>
-                                <div class='col-lg-9 col-md-8'>$username</div>
+                                <div class='col-lg-3 col-md-4 label'>Created On</div>
+                                <div class='col-lg-9 col-md-8'>$create_date</div>
                             </div>
 
                             <div class='row'>
-                                <div class='col-lg-3 col-md-4 label'>Phone</div>
+                                <div class='col-lg-3 col-md-4 label'>Creator's Phone</div>
                                 <div class='col-lg-9 col-md-8'>$phone</div>
                             </div>
 
                             <div class='row'>
-                                <div class='col-lg-3 col-md-4 label'>Email</div>
+                                <div class='col-lg-3 col-md-4 label'>Creator's Email</div>
                                 <div class='col-lg-9 col-md-8'>$email</div>
                             </div>
                         ";
@@ -309,51 +305,30 @@
                         <?php
                             echo 
                             "
-                                <form method='POST' action='profile_update.php?id=$id'>
+                                <form method='POST' action='class_update.php?id=$id&&class=$class'>
                                     <div class='row mb-3'>
                                     <label for='profileImage' class='col-md-4 col-lg-3 col-form-label'>Profile Image</label>
                                     <div class='col-md-8 col-lg-9'>
-                                        <img src='../$dp' alt='Profile'>
+                                        <img src='../$classphoto' alt='Profile'>
                                         <div class='pt-2'>
-                                        <a href='upload_photo.php?id=$id' class='btn btn-primary btn-sm' title='Upload new profile image'><i class='bi bi-upload'></i></a>
-                                        <a href='delete_photo.php?id=$id' class='btn btn-danger btn-sm' title='Remove my profile image'><i class='bi bi-trash'></i></a>
+                                            <a href='upload_class_photo.php?id=$id&&class=$class' class='btn btn-primary btn-sm' title='Upload new profile image'><i class='bi bi-upload'></i></a>
+                                            <a href='delete_class_photo.php?id=$id&&class=$class' class='btn btn-danger btn-sm' title='Remove my profile image'><i class='bi bi-trash'></i></a>
                                         </div>
                                     </div>
                                     </div>
 
                                     <div class='row mb-3'>
-                                    <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>First Name</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='firstname' type='text' class='form-control' id='fullName' value='$firstname' required>
-                                    </div>
-                                    </div>
-
-                                    <div class='row mb-3'>
-                                    <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Second Name</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='secondname' type='text' class='form-control' id='fullName' value='$secondname' required>
-                                    </div>
-                                    </div>
-
-                                    <div class='row mb-3'>
-                                    <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Last Name</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='lastname' type='text' class='form-control' id='fullName' value='$lastname' required>
-                                    </div>
-                                    </div>
-
-                                    <div class='row mb-3'>
-                                    <label for='about' class='col-md-4 col-lg-3 col-form-label'>School</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='school' type='text' class='form-control' id='fullName' value='$school' required>
-                                    </div>
+                                        <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Class Name</label>
+                                        <div class='col-md-8 col-lg-9'>
+                                            <input name='classname' type='text' class='form-control' id='fullName' value='$classname' required>
+                                        </div>
                                     </div>
 
                                     <div class='text-center'>
-                                    <button type='submit' class='btn btn-primary' name='profile'>Save Changes</button>
+                                        <button type='submit' class='btn btn-primary' name='profile'>Save Changes</button>
                                     </div>
                                 </form><br>
-                                <center><p class='card-text'><a href='user_authentication.php?id=$id' class='btn btn-primary delete'>Delete Account</a></p></center>
+                                <center><p class='card-text'><a href='class_authentication.php?id=$id&&class=$class' class='btn btn-primary delete'>Delete Class</a></p></center>
                             ";
                         ?>
 
@@ -363,7 +338,7 @@
 
                     <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
-                        <?php echo "<form method='POST' action='update_password.php?id=$id'>";?>
+                        <?php echo "<form method='POST' action='update_class_pass.php?id=$id&&class=$class'>";?>
 
                             <div class="row mb-3">
                             <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
@@ -390,39 +365,6 @@
                             <button type="submit" class="btn btn-primary" name="updatePass" onclick="checkpass()">Change Password</button>
                             </div>
                         </form><!-- End Change Password Form -->
-                    </div>
-
-                    <div class="tab-pane fade pt-3" id="profile-settings">
-
-                    <!-- Settings Form -->
-                    <?php
-                            echo 
-                            "
-                                <form method='POST' action='user_update.php?id=$id'>
-                                    <div class='row mb-3'>
-
-                                    <div class='row mb-3'>
-                                    <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Username</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='username' type='text' class='form-control' id='fullName' value='$username' required>
-                                    </div>
-                                    </div>
-
-                                    <div class='row mb-3'>
-                                    <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Email</label>
-                                    <div class='col-md-8 col-lg-9'>
-                                        <input name='email' type='email' class='form-control' id='fullName' value='$email' required>
-                                    </div>
-                                    </div>
-
-                                    <div class='text-center'>
-                                    <button type='submit' class='btn btn-primary' name='update'>Save Changes</button>
-                                    </div>
-                                </form>
-                            ";
-                        ?>
-                        <!-- End settings Form -->
-
                     </div>
 
                     </div>

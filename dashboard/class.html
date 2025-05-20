@@ -1,64 +1,3 @@
-<?php
-    require "../connect.php";
-    require "address.php";
-    require "timer.php";
-
-    $id = $_GET['id'];
-
-    $posterID = [];
-    $subject = [];
-    $notes = [];
-    $level = [];
-    $class = [];
-    $description = [];
-    $key = [];
-    $size = 0;
-
-    $query = "SELECT * FROM admin";
-    $result = mysqli_query($db, $query);
-
-    if($result){
-        for($i=0; $i<mysqli_num_rows($result); $i++){
-            $row = mysqli_fetch_array($result);
-
-            if($id === $row['userkey']){
-                $firstname = $row['firstname'];
-                $secondname = $row['secondname'];
-                $lastname = $row['lastname'];
-                $username = $row['username'];
-                $email = $row['email'];
-                $phone = $row['phone'];
-                $school = $row['school'];
-                $codename = $row['codename'];
-                $dp = $row['photo'];
-            }
-        }
-    }
-
-    $initial = str_split($firstname);
-
-    $init = $initial[0];
-
-    $query2 = "SELECT * FROM notes";
-    $result2 = mysqli_query($db, $query2);
-
-    if($result2){
-        for($i=0; $i<mysqli_num_rows($result2); $i++){
-            $row = mysqli_fetch_array($result2);
-
-            if($id === $row['poster_ID']){
-                $subject[$size] = $row['subject'];
-                $notes[$size] = $row['notes'];
-                $level[$size] = $row['level'];
-                $class[$size] = $row['class'];
-                $description[$size] = $row['description'];
-                $key[$size] = $row['notes_key'];
-                $size++;
-            }
-        }
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,7 +43,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-        <?php echo "<a href='check_user.php?id=$id' class='logo d-flex align-items-center'>";?>
+            <a href='check_user.php?id=$id' class='logo d-flex align-items-center'>
             <img src="../media/images/najifunza-logo.png" alt="">
             <span class="d-none d-lg-block">Najifunza</span>
         </a>
@@ -131,40 +70,25 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-                    <?php
-
-                        echo 
-                        "
-                            <img src='../$dp' alt='Profile' class='photo-rounded'>
-                            <span class='d-none d-md-block dropdown-toggle ps-2'>$init. $lastname</span>
-                        ";
-
-                    ?>
-                    
+                    <img src='../media/images/prof_pics/MacOS Hello 4K.jpeg' alt='Profile' class='photo-rounded'>
+                    <span class='d-none d-md-block dropdown-toggle ps-2'>G. Maphole</span>
+                       
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <?php
-                            echo "<h6>$firstname $lastname</h6>";
+                        <h6>$firstname $lastname</h6>
 
-                            if($codename === "TEA"){
-                                echo "<span>Teacher</span>";
-                            }
-                            else if($codename === "ADM"){
-                                echo "<span>Admin</span>";
-                            }
-                            else if($codename === "PRM"){
-                                echo "<span>Premium User</span>";
-                            }
-                        ?>
+                        <span>Teacher</span>
+                        <span>Admin</span>
+                        <span>Premium User</span>
                     </li>
                     <li>
                     <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                    <?php echo "<a class='dropdown-item d-flex align-items-center' href='check_user.php?id=$id'>";?>
+                        <a class='dropdown-item d-flex align-items-center' href='check_user.php?id=$id'>
                         <i class="bi bi-person"></i>
                         <span>My Profile</span>
                     </a>
@@ -174,7 +98,7 @@
                     </li>
 
                     <li>
-                    <?php echo "<a class='dropdown-item d-flex align-items-center' href='../logout.php?id=$id'>";?>
+                        <a class='dropdown-item d-flex align-items-center' href='../logout.php?id=$id'>
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Sign Out</span>
                     </a>
@@ -196,49 +120,49 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='check_user.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>Home</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='notes.php?id=$id'>";?>
+            <a class='nav-link ' href='notes.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>My Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='../students.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>Other Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='check_user.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>My Exams</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='check_user.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>My Announcements</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='class.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='check_user.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>My Classes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
+            <a class='nav-link collapsed' href='saved2.php?id=$id'>
             <i class="bi bi-person"></i>
             <span>Saved</span>
             </a>
@@ -251,8 +175,8 @@
     <main id="main" class="main">
 
         <div class="pagetitle notestitle">
-            <h1>Notes</h1>
-            <?php echo "<a href='add-notes.php?id=$id' class='add2'>Upload Notes</a>";?>
+            <h1>Classes</h1>
+            <a href='add-notes.php?id=$id' class='add2'>Add Class</a>
         </div><!-- End Page Title -->
 
         <section class="section">
@@ -263,57 +187,104 @@
                 </div><br><br>
             </center>
 
-            <?php
+            <div class='unavailable'>
+                <p>Sorry! You have no any class yet!</p>
+            </div>
 
-                if($size == 0){
-                    echo 
-                    "
-                        <div class='unavailable'>
-                            <p>Sorry! You have not posted any notes yet!</p>
-                        </div>
-                    ";
-                }
-                else{
-                    echo "<div class='row align-items-horizontal notes'>";
-                    for($i=$size-1; $i>=0; $i--){
-                        $somo = strtolower($subject[$i]);
-                        echo
-                        "
-                                <div class='popUp' id='$i'>
-                                    <div class='delete_popUp'>
-                                        <p>Are you sure you want to delete these<br> <b>$subject[$i]</b><br> notes with description:<br> <b>$description[$i]</b>?</p>
+            <div class='row align-items-horizontal notes'>
+                
+                <div class="class">
+                    <div class="class-photo" style="background-image: url(../media/classes/images/class.jpg);">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
 
-                                        <div class='top_btns'>
-                                            <a href='delete_notes.php?id=$id&&key=$key[$i]' class='btn btn-primary remove'>Yes, delete</a>
-                                            <a class='btn btn-primary edit' onclick='showdown($i)'>No</a>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
 
-                                <!-- Card with an image on top -->
-                                <div class='card'>
-                                    <img src='../media/images/$somo.jpg' class='card-img-top card subject-photo' alt='...'>
-                                    <div class='card-body'>
-                                        <h3><b>$subject[$i]</b></h3>
-                                        <h5 class='card-title'>Description</h5>
-                                        <p class='card-text'>$description[$i]</p>
-                                        <div class='top_btns'>
-                                            <a href='../$notes[$i]' class='btn btn-primary'>Preview</a>
-                                            <a href='edit_notes.php?id=$id&&key=$key[$i]' class='btn btn-primary edit'>Edit</a>
-                                        </div>
-                                        <p class='card-text'><a onclick='showup($i)' class='btn btn-primary delete'>Delete</a></p>
-                                    </div>
-                                </div>
-                                <!-- End Card with an image on top -->
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
 
-                            
-                        ";
-                    }
-                    echo "</div>";
-                }
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
 
-            ?>
-            
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
+
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
+
+                <div class="class">
+                    <div class="class-photo" style="background-image: url('../media/classes/images/class.jpg');">
+                        <div class="class-initials">A</div>
+                    </div>
+                    <div class="class-name">
+                        <h2>Anonymous Class</h2>
+                    </div>
+                    <div class="class-btns">
+                        <a href="#" class="join">Join</a>
+                        <a href="#" class="enter">Enter</a>
+                    </div>
+                </div>
+
+            </div>            
         
         </section>
 
@@ -330,7 +301,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <?php echo "<a href='add-notes.php?id=$id' class='add-notes'><span class='up-icon'>+</span><span class='up'>Upload</span></a>";?>
+    <a href='add-notes.php?id=$id' class='add-notes'><span class='up-icon'>+</span><span class='up'>Upload</span></a>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -347,32 +318,6 @@
 
     <!-- Search script-->
     <script src="../jquery/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $("#search").keyup(function(){
-
-                var input = $(this).val();
-                // alert(input);
-
-                if(input != ""){
-                    $.ajax({
-                        <?php echo "url: 'search.php?id=$id'";?>,
-                        method: "POST",
-                        data: {input:input},
-
-                        success:function(data){
-                            $("#result").html(data);
-                            $("#result").css("display","block");
-                        }
-                    });
-                }
-                else{
-                    $("#result").css("display","none");
-                }
-            })
-        })    
-    </script>
 
     <script>
         function showup(a){

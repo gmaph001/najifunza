@@ -5,6 +5,12 @@
 
     $id = $_GET['id'];
 
+    $classname = [];
+    $classkey = [];
+    $classinitial = [];
+    $classphoto = [];
+    $size = 0;
+
     $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
 
@@ -17,9 +23,6 @@
                 $secondname = $row['secondname'];
                 $lastname = $row['lastname'];
                 $username = $row['username'];
-                $email = $row['email'];
-                $phone = $row['phone'];
-                $school = $row['school'];
                 $codename = $row['codename'];
                 $dp = $row['photo'];
             }
@@ -29,6 +32,28 @@
     $initial = str_split($firstname);
 
     $init = $initial[0];
+
+
+    $query2 = "SELECT * FROM classes";
+    $result2 = mysqli_query($db, $query2);
+
+    if($result2){
+        for($i=0; $i<mysqli_num_rows($result2); $i++){
+            $row = mysqli_fetch_array($result2);
+
+            if($id === $row['creator']){
+                $classname[$size] = $row['class_name'];
+                $classkey[$size] = $row['class_key'];
+                $classphoto[$size] = $row['class_photo'];
+
+                $classinit = str_split($row['class_name']);
+                $classinitial[$size] = $classinit[0];
+
+                $size++;
+            }
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +62,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NAJIFUNZA | User | Photo</title>
+  <title>NAJIFUNZA | My Classes</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -82,8 +107,21 @@
         <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
+        <div class="search-bar">
+            <div class="search-form d-flex align-items-center">
+                <input type="text" name="query" id="search" placeholder="Search" title="Enter search keyword">
+                <button title="Search"><i class="bi bi-search"></i></button>
+            </div>
+        </div><!-- End Search Bar -->
+
         <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
+
+            <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+            </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown pe-3">
 
@@ -154,7 +192,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>Home</span>
             </a>
@@ -189,7 +227,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='class.php?id=$id'>";?>
+            <?php echo "<a class='nav-link ' href='class.php?id=$id'>";?>
             <i class="bi bi-person"></i>
             <span>My Classes</span>
             </a>
@@ -208,54 +246,57 @@
 
     <main id="main" class="main">
 
-        <div class="pagetitle">
-        <h1>Profile</h1>
+        <div class="pagetitle notestitle">
+            <h1>Classes</h1>
+            <?php echo "<a href='add-class.php?id=$id' class='add2'>Add Class</a>";?>
         </div><!-- End Page Title -->
 
-        <section class="section profile">
-            <div class="row">
-                <div class="col-xl-8">
+        <section class="section">
+            
+            <center>
+                <div class="results" id="result">
+                    <p></p>
+                </div><br><br>
+            </center>
 
-                    <div class="card">
-                        <div class="card-body pt-3">
-                        <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered">
-
-                            <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Edit Photo</button>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content pt-2">
-
-                            <div class="ttab-pane fade show active profile-overview" id="profile-overview">
-
-                            <!-- Profile Edit Form -->
-                            <?php echo "<form action='photo_update.php?id=$id' method='POST' enctype='multipart/form-data'>";?>
-                                <div class="row mb-3">
-                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <?php echo "<img src='../$dp' alt='Profile' class='picha'><br><br>";?>
-                                    <input type="file" class="form-control" id="profileImage" name="photo" required onchange="checksize()" accept=".jpg,.png,.jpeg">
-                                    <p class="alert" id="photoresponse"></p>
+            <?php
+                if($size == 0){
+                    echo 
+                        "
+                            <div class='unavailable'>
+                                <p>Sorry! You have no any class yet!</p>
+                            </div>
+                        ";
+                }
+                else{
+                    echo 
+                        "
+                            <div class='row align-items-horizontal notes'>
+                        ";
+                    for($j=$size-1; $j>=0; $j--){
+                        echo 
+                        "
+                                <div class='class'>
+                                    <div class='class-photo' style='background-image: url(../$classphoto[$j]);'>
+                                        <div class='class-initials'>$classinitial[$j]</div>
+                                    </div>
+                                    <div class='class-name'>
+                                        <h2>$classname[$j]</h2>
+                                    </div>
+                                    <div class='class-btns'>
+                                        <a href='myclass.php?id=$id&&class=$classkey[$j]' class='enter'>Enter</a>
+                                    </div>
                                 </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit" name="update" onclick="subgo()" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                            <!-- End Profile Edit Form -->
-
-                            </div>                
-
-                        </div><!-- End Bordered Tabs -->
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+                        ";
+                    }
+                    
+                    echo 
+                        "
+                            </div>   
+                        ";
+                }
+            ?>         
+        
         </section>
 
     </main><!-- End #main -->
@@ -271,6 +312,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <?php echo "<a href='add-class.php?id=$id' class='add-notes'><span class='up-icon'>+</span><span class='up'>Add</span></a>";?>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -285,47 +327,26 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
+    <!-- Search script-->
+    <script src="../jquery/jquery.js"></script>
+
     <script>
+        function showup(a){
+            let id = a;
+            let popup = document.getElementById(id);
 
-        function checksize(){
-            let photo = document.getElementById("profileImage")
-            let ukubwa = Math.round(photo.files[0].size/1024/1024);
-
-            if(ukubwa>1){
-                document.getElementById("photoresponse").innerHTML = "*Your photo should be less than 1 MB!*";
-                return false;
-            }
-            else{
-                let name = photo.value;
-
-                let type = "";
-
-                for(let i=name.length-4; i<name.length; i++){
-                    type += name[i];
-                }
-
-                if(type === ".jpg" || type === ".png" || type === "jpeg"){
-                    document.getElementById("photoresponse").innerHTML = "";
-                    return true;
-                }
-                else{
-                    document.getElementById("photoresponse").innerHTML = `*${type} format not allowed (Only png/jpeg/jpg allowed)!*`;
-                    return false;
-                }
-            }
+            popup.style.display = "block";
         }
 
-        function subgo(){
-            if(!checksize()){
-                event.preventDefault();
-            }
-            else{
-                document.getElementById("photoresponse").innerHTML = "";
-                return true;
-            }
-        }
+        function showdown(a){
+            let id = a;
+            let popup = document.getElementById(id);
 
+            popup.style.display = "none";
+        }
+    
     </script>
+
 
 </body>
 

@@ -229,8 +229,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="desribe" name="descript" style="height: 100px;" required></textarea>
-                                        <label for="floatingTextarea">Description (Please type the chapter or topic of the notes you want to share)</label>
+                                        <input type="text" class="form-control" id="desribe" name="descript" placeholder="E.g: Networking, Earth as a sphere" required>
+                                        <label for="floatingName">Topic/Chapter Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

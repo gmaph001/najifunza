@@ -1,9 +1,11 @@
 <?php
 
     include "../connect.php";
+    session_start();
 
     $security1 = false;
     $security2 = false;
+    $security3 = false;
     $id = $_GET['id'];
 
     if(!empty($_SERVER['HTTP_CLIENT_IP'])){
@@ -14,6 +16,12 @@
     }
     else{
         $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+    if(isset($_SESSION['userkey'])){
+        if(isset($_SESSION['userID'])){
+            $security3 = true;
+        }
     }
 
     $query = "SELECT * FROM admin";
@@ -49,6 +57,9 @@
     }
 
     if(!$security1 && !$security2){
+        header("location:../login.html");
+    }
+    else if(!$security3){
         header("location:../login.html");
     }
 ?>

@@ -1418,6 +1418,81 @@ h6 {
   margin: auto;
 }
 
+.class{
+  width: 25vw;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: rgb(250, 250, 250);
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.174);
+  padding: 0px 0px 2vh 0px;
+}
+.class-photo{
+  border-radius: 20px;
+  padding: 5vh 2vw;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+.class-initials{
+  margin: auto;
+  text-align: center;
+  border-radius: 50%;
+  padding: 2vh 2vw;
+  background-color: rgb(0, 4, 73);
+  color: white;
+  font-size: 32pt;
+  font-weight: bold;
+  width: fit-content;
+}
+.class-name{
+  padding: 15px;
+}
+.class-btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 1vw;
+}
+.join{
+  background-color: #012970;
+  margin-top: 2vh;
+  padding: 5px 5vw;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 14pt;
+  width: 98%;
+  box-shadow: 0px 0px 2px 2px #00053756;
+}
+.join:hover{
+  background-color: #000537;
+  color: white;
+  box-shadow: 0px 0px 2px 2px #012a7075;
+}
+.enter{
+  background-color: #18d26e;
+  padding: 5px 5vw;
+  margin-top: 2vh;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 14pt;
+  width: 98%;
+  box-shadow: 0px 0px 2px 2px #0053207e;
+}
+.enter:hover{
+  background-color:#005320;
+  color: white;
+  box-shadow: 0px 0px 2px 2px #18d26f86;
+}
+
 @media(max-width: 1100px){
   .add-notes{
     bottom: 5vh;
@@ -1426,6 +1501,10 @@ h6 {
   #result{
     width: 90vw;
     top: 20vh;
+  }
+
+  .class{
+    width: 40vw;
   }
 }
 @media(max-width: 800px){
@@ -1457,5 +1536,19 @@ h6 {
   .delete_popUp{
     width: 85vw;
     padding: 5vh 5vw;
+  }
+}
+@media(max-width: 500px){
+  .notes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .class{
+    width: 80vw;
+  }
+  .class-initials{
+    padding: 2vh 10vw;
   }
 }

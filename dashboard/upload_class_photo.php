@@ -4,6 +4,7 @@
     require "timer.php";
 
     $id = $_GET['id'];
+    $class = $_GET['class'];
 
     $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
@@ -29,6 +30,22 @@
     $initial = str_split($firstname);
 
     $init = $initial[0];
+
+    $query2 = "SELECT * FROM classes";
+    $result2 = mysqli_query($db, $query2);
+
+    if($result2){
+        for($i=0; $i<mysqli_num_rows($result2); $i++){
+            $row = mysqli_fetch_array($result2);
+
+            if($class === $row['class_key']){
+                $classname = $row['class_name'];
+                $classphoto = $row['class_photo'];
+                $create_date = $row['create_date'];
+                $creator = $row['creator'];
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +54,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NAJIFUNZA | User | Photo</title>
+  <title>NAJIFUNZA | User Account</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -154,51 +171,44 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link ' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
             <span>Home</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='class_notes.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Notes</span>
+            <span>Class Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>Other Notes</span>
+            <span>Class Assignments</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Exams</span>
+            <span>Class Exams</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Announcements</span>
+            <span>Class Announcements</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='class.php?id=$id'>";?>
+            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
             <i class="bi bi-person"></i>
-            <span>My Classes</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>Saved</span>
+            <span>Class Projects</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
@@ -209,7 +219,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>Class Profile</h1>
         </div><!-- End Page Title -->
 
         <section class="section profile">
@@ -231,11 +241,11 @@
                             <div class="ttab-pane fade show active profile-overview" id="profile-overview">
 
                             <!-- Profile Edit Form -->
-                            <?php echo "<form action='photo_update.php?id=$id' method='POST' enctype='multipart/form-data'>";?>
+                            <?php echo "<form action='class_photo_update.php?id=$id&&class=$class' method='POST' enctype='multipart/form-data'>";?>
                                 <div class="row mb-3">
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <?php echo "<img src='../$dp' alt='Profile' class='picha'><br><br>";?>
+                                    <?php echo "<img src='../$classphoto' alt='Profile' class='picha'><br><br>";?>
                                     <input type="file" class="form-control" id="profileImage" name="photo" required onchange="checksize()" accept=".jpg,.png,.jpeg">
                                     <p class="alert" id="photoresponse"></p>
                                 </div>
