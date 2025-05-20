@@ -54,7 +54,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NAJIFUNZA | User Account</title>
+  <title>NAJIFUNZA | Class Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -236,6 +236,7 @@
         
                 </div>
             </div>
+            -+-+
 
             </div>
 
@@ -250,7 +251,7 @@
                         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item">         
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                     </li>
 
