@@ -9,6 +9,7 @@
     $classkey = [];
     $classinitial = [];
     $classphoto = [];
+    $users = [];
     $size = 0;
 
     $query = "SELECT * FROM admin";
@@ -45,6 +46,7 @@
                 $classname[$size] = $row['class_name'];
                 $classkey[$size] = $row['class_key'];
                 $classphoto[$size] = $row['class_photo'];
+                $users[$size] = $row['no_users'];
 
                 $classinit = str_split($row['class_name']);
                 $classinitial[$size] = $classinit[0];
@@ -189,56 +191,56 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">    
 
-        <li class="nav-heading">Pages</li>
+            <li class="nav-heading">Pages</li>
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>Home</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+                <i class="bi bi-house-door"></i>
+                <span>Home</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>My Notes</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='notes.php?id=$id'>";?>
+                <i class="bi bi-file-earmark-text"></i>
+                <span>My Notes</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>Other Notes</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='../students.php?id=$id'>";?>
+                <i class="bi bi-grid"></i>
+                <span>Other Notes</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>My Exams</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+                <i class="bi bi-file-diff"></i>
+                <span>My Exams</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>My Announcements</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='check_user.php?id=$id'>";?>
+                <i class="bi bi-megaphone"></i>
+                <span>My Announcements</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='class.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>My Classes</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link ' href='class.php?id=$id'>";?>
+                <i class="bi bi-person"></i>
+                <span>My Classes</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
-            <i class="bi bi-person"></i>
-            <span>Saved</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <?php echo "<a class='nav-link collapsed' href='saved2.php?id=$id'>";?>
+                <i class="bi bi-save"></i>
+                <span>Saved</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
         </ul>
 
@@ -282,6 +284,7 @@
                                     </div>
                                     <div class='class-name'>
                                         <h2>$classname[$j]</h2>
+                                        <span>$users[$j] users</span>
                                     </div>
                                     <div class='class-btns'>
                                         <a href='myclass.php?id=$id&&class=$classkey[$j]' class='enter'>Enter</a>

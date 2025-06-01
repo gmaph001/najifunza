@@ -22,5 +22,5 @@
         window.location.href = "<?php echo "logout.php?id=$id";?>";
     } 
 
-    setTimeout(logoutUser, 600000);
+    setTimeout(logoutUser, 1800000);
 </script>

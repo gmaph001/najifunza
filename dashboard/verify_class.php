@@ -109,6 +109,36 @@
 
                                     if($delete){
                                         $success3 = true;
+
+                                        $query4 = "SELECT * FROM class_activity";
+                                        $result4 = mysqli_query($db, $query4);
+
+                                        if($result4){
+                                            for($i=0; $i<mysqli_num_rows($result4); $i++){
+                                                $row = mysqli_fetch_array($result4);
+
+                                                if($class === $row['class_key']){
+                                                    $material = $row['mat_name'];
+                                                    $key = $row['mat_key'];
+
+                                                    $query5 = "DELETE FROM class_activity WHERE mat_key = '$key'";
+                                                    $result5 = mysqli_query($db, $query5);
+
+                                                    if($result5){
+                                                        if(file_exists("../".$material)){
+                                                            $futa = unlink("../".$material);
+
+                                                            if($futa){
+                                                                echo "Success";
+                                                            }
+                                                            else{
+                                                                echo "Failure!";
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                     else{
                                         echo "Error while deleting your account! <br> Please, contact admin!";

@@ -1,0 +1,144 @@
+.body{
+    padding: 2vh 2vw;
+}
+.new{
+    padding: 5vh 5vw;    
+}
+.new h1{
+    animation: newload 2s ease-in-out normal;
+    width: 100%;
+}
+.unavailable{
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px 3px rgba(0, 142, 0, 0.455);
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 5vh 5vw;
+}
+.unavailable p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 14pt;
+}
+.notes-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    column-gap: 1vw;
+    background-color: black;
+    padding-top: 5vh;
+    animation: cardload 2s ease-in-out normal;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: rgb(18, 18, 18);
+    box-shadow: 0px 0px 2px 2px rgba(0, 142, 0, 0.455);
+    padding-bottom: 2vh;
+    margin-top: 5vh;
+    width: max-content;
+}
+.card:hover{
+    box-shadow: 0px 0px 7px 7px rgba(0, 142, 0, 0.455);
+    transform: translateY(-2vh);
+}
+.description{
+    padding: 2vh 2vw;
+}
+.subject{
+    font-size: 14pt;
+    font-weight: bold;
+}
+.descript{
+    font-size: 12pt;
+    margin-top: 1vh;
+}
+.date{
+    font-size: 10pt;
+    margin-top: 1vh;
+}
+.photo{
+    width: 250px;
+    height: 150px;
+    border-radius: 20px;
+}
+@keyframes classanime {
+    from{
+        box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0);
+    }
+    to{
+        box-shadow: 0px 0px 5px 5px rgba(0, 142, 0, 0.455);
+    }
+}
+@keyframes optshowrd {
+    0%{
+        color: transparent;
+        transform: translateX(-5vw);
+    }
+    25%{
+        color: transparent;
+        transform: translateX(-4vw);
+    }
+    50%{
+        color: transparent;
+        transform: translateX(-3vw);
+    }
+    75%{
+        color: transparent;
+        transform: translateX(-1vw);
+    }
+    100%{
+        color: white;
+        transform: translateX(0vw);
+    }
+}
+@keyframes opthidewrd {
+    from{
+        transform: translateX(0vw);
+        color: white;
+    }
+    to{
+        transform: translateX(-5vw);
+        color: transparent;
+    }
+}
+@keyframes sideload {
+    from{
+        transform: translateX(-10vw);
+    }
+    to{
+        transform: translateX(0vw);
+    }
+}
+@keyframes newload {
+    from{
+        transform: translateX(100vw);
+        color: transparent;
+    }
+    to{
+        transform: translateX(0vw);
+        color: white;
+    }
+}
+@keyframes cardload{
+    from{
+        transform: translateY(60vh);
+    }
+    to{
+        transform: translateY(0vh);
+    }
+}
+@media(max-width: 600px){
+    .new h1{
+        text-align: center;
+    }
+    .notes-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

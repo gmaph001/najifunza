@@ -212,6 +212,13 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
+        <li class="nav-item">
+            <?php echo "<a class='nav-link collapsed' href='class-members.php?id=$id&&class=$class'>";?>
+            <i class="bi bi-person"></i>
+            <span>Class Members</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
         </ul>
 
     </aside><!-- End Sidebar-->
@@ -236,7 +243,6 @@
         
                 </div>
             </div>
-            -+-+
 
             </div>
 
@@ -361,6 +367,8 @@
                                 <input name="renewpassword" type="password" class="form-control" id="renewPassword" required>
                             </div>
                             </div>
+
+                            <?php echo "<a href='reset_class_pass.php?id=$id&&class=$class'>Forget Password?</a>";?>
 
                             <div class="text-center">
                             <button type="submit" class="btn btn-primary" name="updatePass" onclick="checkpass()">Change Password</button>
