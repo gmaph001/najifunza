@@ -4,64 +4,44 @@
     require "timer.php";
 
     $id = $_GET['id'];
+    $key = $_GET['key'];
 
-    $classname = [];
-    $classkey = [];
-    $classinitial = [];
-    $classphoto = [];
-    $userkey = [];
-    $admin = [];
-    $size = 0;
-
-    $query = "SELECT * FROM users";
+    $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
 
     if($result){
         for($i=0; $i<mysqli_num_rows($result); $i++){
             $row = mysqli_fetch_array($result);
 
-            if($id === $row['userkey']){
+            if($key === $row['userkey']){
+                $firstname = $row['firstname'];
+                $secondname = $row['secondname'];
+                $lastname = $row['lastname'];
                 $username = $row['username'];
+                $email = $row['email'];
+                $phone = $row['phone'];
+                $school = $row['school'];
+                $codename = $row['codename'];
                 $dp = $row['photo'];
             }
         }
     }
 
-
-    $query2 = "SELECT * FROM classes";
+    $query2 = "SELECT * FROM users";
     $result2 = mysqli_query($db, $query2);
 
     if($result2){
         for($i=0; $i<mysqli_num_rows($result2); $i++){
             $row = mysqli_fetch_array($result2);
 
-                $classname[$size] = $row['class_name'];
-                $classkey[$size] = $row['class_key'];
-                $classphoto[$size] = $row['class_photo'];
-
-                $classinit = str_split($row['class_name']);
-                $classinitial[$size] = $classinit[0];
-
-                $userkey[$size] = $row['creator'];
-
-                $query3 = "SELECT * FROM admin";
-                $result3 = mysqli_query($db, $query3);
-
-                if($result3){
-                    for($j=0; $j<mysqli_num_rows($result3); $j++){
-                        $row2 = mysqli_fetch_array($result3);
-
-                        if($userkey[$size] === $row2['userkey']){
-                            $admin[$size] = $row2['username'];
-                        }
-                    }
-                }
-
-                $size++;
-            
+            if($id === $row['userkey']){
+                
+                $username2 = $row['username'];
+                $email2 = $row['email'];
+                $dp2 = $row['photo'];
+            }
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +50,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NAJIFUNZA | My Classes</title>
+  <title>NAJIFUNZA | User Account</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -115,21 +95,8 @@
         <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        <div class="search-bar">
-            <div class="search-form d-flex align-items-center">
-                <input type="text" name="query" id="search" placeholder="Search" title="Enter search keyword">
-                <button title="Search"><i class="bi bi-search"></i></button>
-            </div>
-        </div><!-- End Search Bar -->
-
         <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown pe-3">
 
@@ -139,8 +106,8 @@
 
                     echo 
                     "
-                        <img src='../$dp' alt='Profile' class='photo-rounded'>
-                        <span class='d-none d-md-block dropdown-toggle ps-2'>$username</span>
+                        <img src='../$dp2' alt='Profile' class='photo-rounded'>
+                        <span class='d-none d-md-block dropdown-toggle ps-2'>$username2</span>
                     ";
 
                 ?>
@@ -150,7 +117,7 @@
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
                     <?php
-                        echo "<h6>$username</h6>";
+                        echo "<h6>$username2</h6>";
                         echo "<span>Student</span>";
                     ?>
                 </li>
@@ -205,7 +172,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <?php echo "<a class='nav-link ' href='class2.php?id=$id'>";?>
+                <?php echo "<a class='nav-link' href='class2.php?id=$id'>";?>
                 <i class="bi bi-person"></i>
                 <span>Classes</span>
                 </a>
@@ -224,88 +191,86 @@
 
     <main id="main" class="main">
 
-        <section class="section">
-            
-            <center>
-                <div class="results2" id="result2">
-                    
-                </div><br><br>
-            </center>
+        <div class="pagetitle">
+        <h1>Profile</h1>
+        </div><!-- End Page Title -->
 
-            <?php
-                if($size == 0){
-                    echo 
-                        "
-                            <div class='unavailable'>
-                                <p>Sorry! There are no any class yet!</p>
-                            </div>
-                        ";
-                }
-                else{
-                    echo 
-                        "
-                            <div class='row align-items-horizontal notes' id='notes-sect'>
-                        ";
-                    for($j=$size-1; $j>=0; $j--){
-                        $success = false;
-                        echo 
-                        "
-                                <div class='class'>
-                                    <div class='class-photo' style='background-image: url(../$classphoto[$j]);'>
-                                        <div class='class-initials'>$classinitial[$j]</div>
-                                    </div>
-                                    <div class='class-name'>
-                                        <h2>$classname[$j]</h2>
-                                        <span>Creator: <a href='admin-overview.php?id=$id&&key=$userkey[$j]'<b>$admin[$j]</b></a></span>
-                                    </div>
-                        ";
+        <section class="section profile">
+            <div class="row">
+              <div class="col-xl-4">
 
-                        $query = "SELECT * FROM my_classes";
-                        $result = mysqli_query($db, $query);
+                <div class="card">
+                  <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        if(mysqli_num_rows($result)>0){
-                            for($k=0; $k<mysqli_num_rows($result); $k++){
-                                $row = mysqli_fetch_array($result);
+                    <?php echo "<img src='../$dp' alt='Profile' class='picha'><br>";?>
+                    <?php
+                            echo "<h6><b>$username</b></h6>";
+                    ?>
+          
+                  </div>
+                
+              </div>
 
-                                if($classkey[$j] === $row['class_key']){
-                                    if($id === $row['userkey']){
-                                        $success = true;
-                                    }
-                                }
-                            }
-                        }
+            </div>
 
-                        if($success){
+            <div class="col-xl-8">
+
+
+            <div class="card">
+                <div class="card-body pt-3">
+                <!-- Bordered Tabs -->
+                <ul class="nav nav-tabs nav-tabs-bordered">
+
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                    </li>
+
+                </ul>
+                <div class="tab-content pt-2">
+
+                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                        <h5 class="card-title">Profile Details</h5>
+                        
+                        <?php 
                             echo 
                             "
-                                <div class='class-btns2'>
-                                    <a href='class3.php?id=$id&&class=$classkey[$j]' class='enter2'>Enter</a>
-                                    <a href='leave_class.php?id=$id&&class=$classkey[$j]&&key=$id' class='delete leave'>Leave</a>
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-4 label '>Full Name</div>
+                                    <div class='col-lg-9 col-md-8'>$firstname $secondname $lastname</div>
                                 </div>
-                            ";
-                        }
-                        else{
-                            echo 
-                            "
-                                <div class='class-btns'>
-                                    <a href='join_class.php?id=$id&&class=$classkey[$j]' class='join'>Join</a>
-                                </div>
-                            ";
-                        }
 
-                        echo
-                        "
-                            </div>
-                        ";
-                    }
-                    
-                    echo 
-                    "
-                        </div>   
-                    ";
-                }
-            ?>         
-        
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-4 label'>School</div>
+                                    <div class='col-lg-9 col-md-8'>$school</div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-4 label'>Username</div>
+                                    <div class='col-lg-9 col-md-8'>$username</div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-4 label'>Phone</div>
+                                    <div class='col-lg-9 col-md-8'>$phone</div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='col-lg-3 col-md-4 label'>Email</div>
+                                    <div class='col-lg-9 col-md-8'>$email</div>
+                                </div>
+                            ";
+                        ?>
+
+                    </div>
+
+                </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+            </div>
+        </div>
         </section>
 
     </main><!-- End #main -->
@@ -334,55 +299,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Search script-->
-    <script src="../jquery/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $("#search").keyup(function(){
-
-                var input = $(this).val();
-                // alert(input);
-
-                if(input != ""){
-                    $.ajax({
-                        <?php echo "url: 'searchclass.php?id=$id'";?>,
-                        method: "POST",
-                        data: {input:input},
-
-                        success:function(data){
-                            $("#result2").html(data);
-                            $("#result2").css("display","block");
-                            $("#notes-sect").css("display","none");
-                        }
-                    });
-                }
-                else{
-                    $("#result2").css("display","none");
-                    $("#notes-sect").css("display","grid");
-                }
-            })
-        })    
-    </script>
-
-    <script>
-        function showup(a){
-            let id = a;
-            let popup = document.getElementById(id);
-
-            popup.style.display = "block";
-        }
-
-        function showdown(a){
-            let id = a;
-            let popup = document.getElementById(id);
-
-            popup.style.display = "none";
-        }
-    
-    </script>
-
+    <script src="assets/js/login.js"></script>
 
 </body>
 

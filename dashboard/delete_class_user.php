@@ -66,7 +66,7 @@
                             $row = mysqli_fetch_array($result);
 
                             if($key === $row['userkey']){
-                                $query2 = "DELETE FROM my_classes WHERE class_key = '$class' ";
+                                $query2 = "DELETE FROM my_classes WHERE class_key = '$class' AND userkey = '$key'";
                                 $result2 = mysqli_query($db, $query2);
 
                                 if($result2){
@@ -78,11 +78,16 @@
                                             $row2 = mysqli_fetch_array($result3);
 
                                             if($class === $row2['class_key']){
-                                                $no = $row2['no_users'];
-                                                $no = $no-1;
+                                                $no = intval($row2['no_users']);
+                                                if($no <= 1){
+                                                    $no = 0;
+                                                }
+                                                else{
+                                                    $no--;
+                                                }
 
                                                 $query4 = "UPDATE classes SET no_users = '$no' WHERE class_key = '$class'";
-                                                $result4 = mysqli_Query($db, $query4);
+                                                $result4 = mysqli_query($db, $query4);
                                                 
                                                 if($result4){
                                                     header("location:class-members.php?id=$id&&class=$class");

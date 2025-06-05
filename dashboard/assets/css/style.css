@@ -1577,6 +1577,9 @@ h6 {
   }
 }
 @media(max-width: 800px){
+  .number{
+    display: none;
+  }
   .add-notes{
     bottom: 8vh;
     display: flex;
@@ -1605,6 +1608,12 @@ h6 {
   .delete_popUp{
     width: 85vw;
     padding: 5vh 5vw;
+  }
+  .student span{
+    font-size: 15px;
+  }
+  .class-btns2{
+    padding: 2vh 4vw;
   }
 }
 @media(max-width: 500px){

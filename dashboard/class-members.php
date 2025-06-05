@@ -288,11 +288,11 @@
                             </div>
                             
                             <div class='student'>
-                                <span><b>$no.</b></span>
+                                <span class='number'><b>$no.</b></span>
                                 <span><b>$user[$i]</b></span>
                                 <span>$joined[$i]</span>
                                 <div class='btns'>
-                                    <a class='delete' onclick='showup($i)'>Remove</a>
+                                    <a class='delete' onclick='showup($i)'><i class='bi bi-trash'></i></a>
                                 </div>
                             </div>
 
