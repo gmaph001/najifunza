@@ -1354,7 +1354,29 @@ section,
 /*--------------------------------------------------------------
 # Personal Added styles.
 --------------------------------------------------------------*/
-
+.notification{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  background-color: var(--background-color);
+  z-index: 100;
+  color: var(--nav-color);
+  bottom: 2vh;
+  left: 5vw;
+  position: fixed;
+  padding: 2vh 2vw;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 5px var(--accent-color);
+  animation: notify 0.5s ease-in-out normal infinite;
+}
+.notification:hover{
+  color: var(--btn-download-color);
+}
+.notification .icon{
+  width: 30px;
+  height: 30px;
+}
 .img-fluid{
   background-color: var(--accent-color);
   padding: 5px 20px 5px 20px;
@@ -1569,6 +1591,10 @@ section,
 }
 
 @media(max-width:950px){
+  .notification{
+    left: 5vw;
+    padding: 10px 15px;
+  }
   .img-fluid{
     margin-left: 0vw;
   }
@@ -1609,6 +1635,27 @@ section,
     padding: 1vh 20vw;
   }
 }
+}
+
+
+@keyframes notiappear {
+  from{
+    transform: translateX(-50vw);
+  }
+  to{
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes notify {
+  from{
+    box-shadow: 0px 0px 5px 5px #33ff0000;
+    background-color: var(--accent-color);
+  }
+  to{
+    box-shadow: 0px 0px 5px 5px var(--accent-color);
+    background-color: var(--background-color);
+  }
 }
 
 @keyframes per-appear{

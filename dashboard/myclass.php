@@ -172,42 +172,42 @@
 
         <li class="nav-item">
             <?php echo "<a class='nav-link ' href='myclass.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-house-door"></i>
             <span>Home</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='class_notes.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-file-earmark-text"></i>
             <span>Class Notes</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-grid"></i>
             <span>Class Assignments</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-file-diff"></i>
             <span>Class Exams</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-megaphone"></i>
             <span>Class Announcements</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
-            <i class="bi bi-person"></i>
+            <i class="bi bi-save"></i>
             <span>Class Projects</span>
             </a>
         </li><!-- End Profile Page Nav -->

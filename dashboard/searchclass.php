@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/results.css">
 </head>
 <body>
@@ -72,8 +70,9 @@
                         if($success){
                             echo 
                             "
-                                <div class='class-btns'>
-                                    <a href='class3.php?id=$id&&class=$classkey[$j]' class='enter'>Enter</a>
+                                <div class='class-btns2'>
+                                    <a href='class3.php?id=$id&&class=$classkey[$j]' class='enter2'>Enter</a>
+                                    <a href='leave_class.php?id=$id&&class=$classkey[$j]&&key=$id' class='delete leave'>Leave</a>
                                 </div>
                             ";
                         }

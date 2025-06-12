@@ -1546,6 +1546,9 @@ h6 {
   font-size: 12pt;
   margin-bottom: 3vh;
 }
+.student span{
+  width: 25%;
+}
 .delete{
   padding: 5px 15px;
   text-align: center;

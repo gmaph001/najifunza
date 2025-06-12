@@ -60,6 +60,27 @@
             }
         }
     }
+
+    $query4 = "SELECT * FROM my_classes";
+    $result4 = mysqli_query($db, $query4);
+
+    if($result4){
+        for($i=0; $i<mysqli_num_rows($result4); $i++){
+            $row = mysqli_fetch_array($result4);
+
+            if($id === $row['userkey'] && $class === $row['class_key']){
+                $no = intval($row['notify']);
+                $no = 0;
+
+                $query5 = "UPDATE my_classes SET notify = '$no' WHERE userkey = '$id' AND class_key = '$class'";
+                $result5 = mysqli_query($db, $query5);
+
+                if(!$result5){
+                    echo "There was a problem while updating result!";
+                }
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -181,9 +202,9 @@
                                     <img src='../media/images/$somo[$i].jpg' class='photo'>
                                     <div class='description'>
                                         <p class='subject'>$subject[$i]</p>
-                                        <p class='descript'>Type: $type[$i]</p>
-                                        <p class='descript'>Description: $topic[$i]</p>
-                                        <p class='date'>Posted on: $date[$i]</p>
+                                        <p class='descript'><b>Type:</b> $type[$i]</p>
+                                        <p class='descript'><b>Description:</b> $topic[$i]</p>
+                                        <p class='date'><b>Posted on:</b> $date[$i]</p>
                                     </div>
                                 </a>
                             ";

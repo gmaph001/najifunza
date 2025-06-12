@@ -39,7 +39,7 @@
     box-shadow: 0px 0px 2px 2px rgba(0, 142, 0, 0.455);
     padding-bottom: 2vh;
     margin-top: 5vh;
-    width: max-content;
+    width: 250px;
 }
 .card:hover{
     box-shadow: 0px 0px 7px 7px rgba(0, 142, 0, 0.455);

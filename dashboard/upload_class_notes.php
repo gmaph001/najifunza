@@ -64,6 +64,8 @@
                             $type = "notes";
                             $time = $_POST['muda'];
                             $date = $_POST['tarehe'];
+                            $exist = false;
+                            $exist2 = false;
 
                             if($level === "1"){
                                 $subject = $_POST['pSubj'];
@@ -112,8 +114,44 @@
                                     $result = mysqli_query($db, $query);
 
                                     if($result){
-                                        header("location:class_notes.php?id=$id&&class=$class");
+                                        $query2 = "SELECT * FROM my_classes";
+                                        $result2 = mysqli_query($db, $query2);
+
+                                        if($result2){
+                                            for($i=0; $i<mysqli_num_rows($result2); $i++){
+                                                $row = mysqli_fetch_array($result2);
+
+                                                if($class === $row['class_key']){
+                                                    $exist = true;
+                                                    $no = $row['notify'];
+                                                    $id2 = $row['userkey'];
+
+                                                    $no++;
+
+                                                    $query3 = "UPDATE my_classes SET notify = '$no' WHERE class_key = '$class' AND userkey = '$id2'";
+                                                    $result3 = mysqli_query($db, $query3);
+
+                                                    if($result3){
+                                                        $exist2 = true;
+                                                    }
+                                                    else{
+                                                        echo "Error while updating notification";
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if($exist && $exist2){
+                                            header("location:class_notes.php?id=$id&&class=$class");
+                                        }
+                                        else if(!$exist && !$exist){
+                                            header("location:class_notes.php?id=$id&&class=$class");
+                                        }
+                                        else{
+                                            echo "Error while updating notification!";
+                                        }
                                     }
+                                    
                                     else{
                                         echo "Error while uploading notes!";
                                     }

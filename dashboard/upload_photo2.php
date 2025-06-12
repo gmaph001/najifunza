@@ -4,6 +4,7 @@
     require "timer.php";
 
     $id = $_GET['id'];
+    $no = 0;
 
     $query = "SELECT * FROM users";
     $result = mysqli_query($db, $query);
@@ -17,6 +18,19 @@
                 $username = $row['username'];
                 $email = $row['email'];
                 $dp = $row['photo'];
+            }
+        }
+    }
+
+    $query4 = "SELECT * FROM my_classes";
+    $result4 = mysqli_query($db, $query4);
+
+    if($result4){
+        for($i=0; $i<mysqli_num_rows($result4); $i++){
+            $row = mysqli_fetch_array($result4);
+
+            if($id === $row['userkey']){
+                $no += intval($row['notify']);
             }
         }
     }
@@ -75,6 +89,80 @@
 
         <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
+
+            <?php
+                if($no>0){
+                    echo 
+                        "
+                            <li class='nav-item dropdown'>
+
+                                <a class='nav-link nav-icon' href='#' data-bs-toggle='dropdown'>
+                                    <i class='bi bi-bell'></i>
+                                    <span class='badge bg-primary badge-number'>$no</span>
+                                </a><!-- End Notification Icon -->
+
+                                <ul class='dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications'>
+                                    <li class='dropdown-header'>
+                                        You have $no new notifications
+                                        <a href='notification.php?id=$id&&pg=class2'><span class='badge rounded-pill bg-primary p-2 ms-2'>Mark all as read</span></a>
+                                    </li>
+                                    <li>
+                                        <hr class='dropdown-divider'>
+                                    </li>
+                        ";
+                    $query5 = "SELECT * FROM my_classes";
+                    $result5 = mysqli_query($db, $query5);
+
+                    if($result5){
+                        for($j=0; $j<mysqli_num_rows($result5); $j++){
+                            $row = mysqli_fetch_array($result5);
+
+                            if($id === $row['userkey']){
+                                $key = $row['class_key'];
+                                $no2 = $row['notify'];
+
+                                $query6 = "SELECT * FROM classes";
+                                $result6 = mysqli_query($db, $query6);
+
+                                if($result6){
+                                    for($i=0; $i<mysqli_num_rows($result6); $i++){
+                                        $row2 = mysqli_fetch_array($result6);
+
+                                        if($key === $row2['class_key'] && $no2>0){
+                                            $jina = $row2['class_name'];
+
+                                            echo 
+                                                "   
+                                                    <li class='notification-item'>
+                                                        <a href='class3.php?id=$id&&class=$key'><i class='bi bi-check-circle text-success'></i></a>
+                                                        <a href='class3.php?id=$id&&class=$key'>   
+                                                            <div>
+                                                                <h4 style='color:black;'>Class Notification</h4>
+                                                                <p>$no2 new notification(s) from $jina</p>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <hr class='dropdown-divider'>
+                                                    </li>
+                                                ";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    
+                    echo
+                        "
+                                </ul><!-- End Notification Dropdown Items -->
+
+                            </li><!-- End Notification Nav -->
+                        ";
+                }
+            ?>
 
             <li class="nav-item dropdown pe-3">
 

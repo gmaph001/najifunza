@@ -284,7 +284,7 @@
                                     </div>
                                     <div class='class-name'>
                                         <h2>$classname[$j]</h2>
-                                        <span>$users[$j] users</span>
+                                        <span>$users[$j] member(s)</span>
                                     </div>
                                     <div class='class-btns'>
                                         <a href='myclass.php?id=$id&&class=$classkey[$j]' class='enter'>Enter</a>

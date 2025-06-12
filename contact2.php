@@ -204,6 +204,24 @@
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <?php
+        $query = "SELECT * FROM my_classes";
+        $result = mysqli_query($db, $query);
+
+        if($result){
+            for($i=0; $i<mysqli_num_rows($result); $i++){
+                $row = mysqli_fetch_array($result);
+
+                if($id === $row['userkey']){
+                    $no += intval($row['notify']);
+                }
+            }
+        }
+
+        if($no>0){
+            echo "<a href='dashboard/class2.php?id=$id' class='notification'><img src='media/icons/notification.png' class='icon'>&nbsp;&nbsp; You have $no new notification! </a>";
+        }
+    ?>
 
   <!-- Preloader -->
   <div id="preloader"></div>

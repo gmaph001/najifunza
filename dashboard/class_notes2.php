@@ -160,8 +160,8 @@
                                     <img src='../media/images/$somo[$i].jpg' class='photo'>
                                     <div class='description'>
                                         <p class='subject'>$subject[$i]</p>
-                                        <p class='descript'>Topic: $topic[$i]</p>
-                                        <p class='date'>Posted on: $date[$i]</p>
+                                        <p class='descript'><b>Topic:</b> $topic[$i]</p>
+                                        <p class='date'><b>Posted on:</b> $date[$i]</p>
                                     </div>
                                 </a>
                             ";
