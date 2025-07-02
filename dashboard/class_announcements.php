@@ -6,16 +6,15 @@
     $id = $_GET['id'];
     $class = $_GET['class'];
 
-    $posterID = [];
-    $subject = [];
-    $notes = [];
-    $level = [];
-    $darasa = [];
-    $description = [];
+    $headline = [];
+    $news = [];
     $key = [];
     $time = [];
     $date = [];
+    $views = [];
     $size = 0;
+    $no = 1;
+    $no_views = 0;
 
     $query = "SELECT * FROM admin";
     $result = mysqli_query($db, $query);
@@ -58,24 +57,43 @@
         }
     }
 
-    $query2 = "SELECT * FROM class_activity";
+    $query2 = "SELECT * FROM class_news";
     $result2 = mysqli_query($db, $query2);
 
     if($result2){
         for($i=0; $i<mysqli_num_rows($result2); $i++){
             $row = mysqli_fetch_array($result2);
 
-            if($id === $row['userkey'] && $class === $row['class_key'] && $row['mat_type'] === "notes"){
-                $subject[$size] = $row['subject'];
-                $notes[$size] = $row['mat_name'];
-                $description[$size] = $row['description'];
-                $key[$size] = $row['mat_key'];
-                $time[$size] = $row['time'];
-                $date[$size] = $row['date'];
+            if($id === $row['poster'] && $class === $row['class'] && $row['news_type'] === "class"){
+                $no_views = 0;
+                $news_id[$size] = $row['news_ID'];
+                $headline[$size] = $row['headline'];
+                $news[$size] = $row['news'];
+                $key[$size] = $row['news_key'];
+                $time[$size] = $row['news_time'];
+                $date[$size] = $row['news_date'];
+
+                $query3 = "SELECT * FROM classnews_views";
+                $result3 = mysqli_query($db, $query3);
+
+                if($result3){
+                    for($j=0; $j<mysqli_num_rows($result3); $j++){
+                        $row2 = mysqli_fetch_array($result3);
+
+                        if($key[$size] === $row2['news_key'] && $class === $row2['class_key']){
+                            $no_views++;
+                        }
+                    }
+                }
+
+                $views[$size] = $no_views;
+                
                 $size++;
             }
         }
     }
+
+    
 
 ?>
 <!DOCTYPE html>
@@ -209,7 +227,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='class_notes.php?id=$id&&class=$class'>";?>
+            <?php echo "<a class='nav-link collapsed' href='class_notes.php?id=$id&&class=$class'>";?>
             <i class="bi bi-file-earmark-text"></i>
             <span>Class Notes</span>
             </a>
@@ -230,7 +248,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='class_announcements.php?id=$id&&class=$class'>";?>
+            <?php echo "<a class='nav-link ' href='class_announcements.php?id=$id&&class=$class'>";?>
             <i class="bi bi-megaphone"></i>
             <span>Class Announcements</span>
             </a>
@@ -257,67 +275,71 @@
     <main id="main" class="main">
 
         <div class="pagetitle notestitle">
-            <h1>Notes</h1>
-            <?php echo "<a href='add-class-notes.php?id=$id&&class=$class' class='add2'>Upload Notes</a>";?>
+            <h1>Announcements</h1>
+            <?php echo "<a href='add-class-news.php?id=$id&&class=$class' class='add2'>New announcements</a>";?>
         </div><!-- End Page Title -->
-
-        <section class="section">
-            
-            <center>
-                <div class="results" id="result">
-                    <p></p>
-                </div><br><br>
-            </center>
-
-            <?php
-
-                if($size == 0){
-                    echo 
+        
+        <?php
+            if($size == 0){
+                echo 
                     "
                         <div class='unavailable'>
-                            <p>Sorry! You have not posted any notes yet!</p>
+                            <p>Sorry! You have not posted any announcement yet!</p>
                         </div>
                     ";
-                }
-                else{
-                    echo "<div class='row align-items-horizontal notes'>";
-                    for($i=$size-1; $i>=0; $i--){
-                        $somo = strtolower($subject[$i]);
-                        echo
+            }
+            else{
+
+                echo 
+                    "
+                        <div class='row align-items-horizontal matangazo'>
+
+                    ";
+
+
+                for($i=$size-1; $i>=0; $i--){
+                
+                    echo 
                         "
-                                <div class='popUp' id='$i'>
-                                    <div class='delete_popUp'>
-                                        <p>Are you sure you want to delete these<br> <b>$subject[$i]</b><br> notes with description:<br> <b>$description[$i]</b>?</p>
+                            <div class='viewers' id='view$news_id[$i]'>
+                                <div class='viewers-main'>
+                                    <h4><b>Viewers</b></h4>
+                                    <iframe src='class-viewers.php?id=$id&&class=$class&&key=$key[$i]' class='viewers-accounts'></iframe>
+                                    <a class='view' onclick="; echo "hideviews('view$news_id[$i]')"; echo ">Hide</a>
+                                </div>
+                            </div>    
+                        
+                            <div class='announcement'>
+                                <div class='announce-top'>
+                                    <span class='number'><b>$no.</b></span>
+                                    <span class='date'><b>Posted on:</b> $date[$i]</span>
+                                    <div class='announce-btns'>
+                                        <a class='view' onclick="; echo "bottomview('btm$news_id[$i]') "; echo "id='onbtm$news_id[$i]' name='0'>View</a>
+                                        <a href='class_announcement_edit.php?id=$id&&class=$class&&key=$key[$i]' class='edit'>Edit</a>
+                                        <a href='class_announcement_delete.php?id=$id&&class=$class&&key=$key[$i]' class='delete'>Delete</a>
+                                    </div>
 
-                                        <div class='top_btns'>
-                                            <a href='delete_class_notes.php?id=$id&&class=$class&&key=$key[$i]' class='btn btn-primary remove'>Yes, delete</a>
-                                            <a class='btn btn-primary edit' onclick='showdown($i)'>No</a>
-                                        </div>
+                                </div>
+                                <div class='announce-bottom' id='btm$news_id[$i]'>
+                                    <h5 class='announce-headline'>$headline[$i]</h5>
+                                    <p class='announce-main'>
+                                        $news[$i]
+                                    </p>
+                                    <div class='announce-view'>
+                                        <span class='viewed'>Viewed by: </span>
+                                        <a class='views' onclick="; echo "showviews('view$news_id[$i]')"; echo ">$views[$i] viewer(s)</a>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Card with an image on top -->
-                                <div class='card'>
-                                    <img src='../media/images/$somo.jpg' class='card-img-top card subject-photo' alt='...'>
-                                    <div class='card-body'>
-                                        <h4><b>$subject[$i]</b></h4>
-                                        <p class='card-text'><b>Topic:</b> $description[$i]</p>
-                                        <div class='top_btns'>
-                                            <a href='../$notes[$i]' class='btn btn-primary' style='width: 100%;'>Preview</a>
-                                        </div>
-                                        <p class='card-text'><a onclick='showup($i)' class='btn btn-primary delete'>Delete</a></p>
-                                    </div>
-                                </div>
-                                <!-- End Card with an image on top -->
-
-                            
+                        
                         ";
-                    }
-                    echo "</div>";
+                        $no++;
                 }
 
-            ?>
-            
+                echo "</div>";
+            }
+        ?>           
         
         </section>
 
@@ -334,7 +356,7 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <?php echo "<a href='add-class-notes.php?id=$id&&class=$class' class='add-notes'><span class='up-icon'>+</span><span class='up'>Upload</span></a>";?>
+    <?php echo "<a href='add-class-news.php?id=$id&&class=$class' class='add-notes'><span class='up-icon'>+</span><span class='up'>Upload</span></a>";?>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -351,34 +373,18 @@
 
     <!-- Search script-->
     <script src="../jquery/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $("#search").keyup(function(){
-
-                var input = $(this).val();
-                // alert(input);
-
-                if(input != ""){
-                    $.ajax({
-                        <?php echo "url: 'search.php?id=$id'";?>,
-                        method: "POST",
-                        data: {input:input},
-
-                        success:function(data){
-                            $("#result").html(data);
-                            $("#result").css("display","block");
-                        }
-                    });
-                }
-                else{
-                    $("#result").css("display","none");
-                }
-            })
-        })    
-    </script>
 
     <script>
+
+        function even(a){
+            if(a%2 == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         function showup(a){
             let id = a;
             let popup = document.getElementById(id);
@@ -387,6 +393,42 @@
         }
 
         function showdown(a){
+            let id = a;
+            let popup = document.getElementById(id);
+
+            popup.style.display = "none";
+        }
+
+        function bottomview(a){
+            let id = a;
+            console.log(id);
+            let view = document.getElementById(id);
+            let viewbtn = document.getElementById("on"+id);
+            let num = viewbtn.getAttribute("name");
+
+            num++;
+
+            if(even(num)){
+                view.style.display = "none";
+                viewbtn.setAttribute("name", num);
+                viewbtn.innerHTML = "View";
+            }
+            else{
+                view.style.display = "flex";
+                viewbtn.setAttribute("name", num);
+                viewbtn.innerHTML = "Hide";
+            }
+
+        }
+
+        function showviews(a){
+            let id = a;
+            let popup = document.getElementById(id);
+
+            popup.style.display = "block";
+        }
+
+        function hideviews(a){
             let id = a;
             let popup = document.getElementById(id);
 

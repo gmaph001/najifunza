@@ -48,6 +48,29 @@
         }
     }
 
+    $headline = [];
+    $news = [];
+    $posted = [];
+    $key = [];
+    $size2 = 0;
+
+    $query5 = "SELECT * FROM class_news";
+    $result5 = mysqli_query($db, $query5);
+
+    if($result5){
+        for($i=0; $i<mysqli_num_rows($result5); $i++){
+            $row = mysqli_fetch_array($result5);
+
+            if($class === $row['class'] && $row['news_type'] === "class"){
+                $headline[$size2] = $row['headline'];
+                $news[$size2] = $row['news'];
+                $posted[$size2] = $row['news_date'];
+                $key[$size2] = $row['news_key'];
+                $size2++;
+            }
+        }
+    }
+
     $query3 = "SELECT * FROM classes";
     $result3 = mysqli_query($db, $query3);
 
@@ -123,7 +146,7 @@
                         <img src='../media/icons/notes.png' class='icon'>
                         <p class='optword' id='optwrd6'>Notes</p>
                     </a>
-                    <a class='option' href='#' onmouseover='optshow(2)' onmouseleave='opthide(2)'>
+                    <a class='option' href='class_news.php?id=$id&&class=$class' onmouseover='optshow(2)' onmouseleave='opthide(2)'>
                         <img src='../media/icons/news.png' class='icon'>
                         <p class='optword' id='optwrd2'>News</p>
                     </a>
@@ -152,7 +175,7 @@
                         "
                             <a href='class3.php?id=$id&&class=$class' class='nav-option'>Home</a><hr>
                             <a href='class_notes2.php?id=$id&&class=$class' class='nav-option'>Notes</a><hr>
-                            <a href='#' class='nav-option'>News</a><hr>
+                            <a href='class_news.php?id=$id&&class=$class' class='nav-option'>News</a><hr>
                             <a href='#' class='nav-option'>Exams</a><hr>
                             <a href='#' class='nav-option'>Projects</a><hr>
                             <a href='#' class='nav-option'>Assignments</a><hr>
@@ -179,7 +202,54 @@
                 
             </h1>
             <div class="new">
-                <h1>What's New</h1>
+                <h1>What's New</h1><br>
+                <h1 class="new-things">New Announcements</h1>
+                <?php
+                    if($size2 == 0){
+                        echo
+                        "
+                            <div class='unavailable'>
+                                <p>Sorry there are no any announcements posted yet!</p>
+                            </div>
+                        ";
+                    }
+                ?>
+                <div class="cards">
+
+                <?php
+                    
+                    if($size2>4){
+                        for($i=$size2-1; $i>=$size2-4; $i--){
+                            echo 
+                            "
+                                <a class='card' href='classnews_view.php?id=$id&&class=$class&&key=$key[$i]'>
+                                    <img src='../media/icons/tangazo.webp' class='news-photo'>
+                                    <div class='description'>
+                                        <p class='descript'>$headline[$i]</p>
+                                        <p class='date'>Posted on: $posted[$i]</p>
+                                    </div>
+                                </a>
+                            ";
+                        }
+                    }
+                    else{
+                        for($i=$size2-1; $i>=0; $i--){
+                            echo 
+                            "
+                                <a class='card' href='classnews_view.php?id=$id&&class=$class&&key=$key[$i]'>
+                                    <img src='../media/icons/tangazo.webp' class='news-photo'>
+                                    <div class='description'>
+                                        <p class='descript'>$headline[$i]</p>
+                                        <p class='date'>Posted on: $posted[$i]</p>
+                                    </div>
+                                </a>
+                            ";
+                        }
+                    }
+                ?>
+                
+                </div><br>
+                <h1 class="new-things">New Materials</h1>
                 <?php
                     if($size == 0){
                         echo

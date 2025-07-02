@@ -21,26 +21,24 @@
 
     $user = str_split($username);
 
-    $material = [];
-    $subject = [];
-    $somo = [];
-    $date = [];
-    $topic = [];
+    $headline = [];
+    $news = [];
+    $posted = [];
+    $key = [];
     $size = 0;
 
-    $query2 = "SELECT * FROM class_activity";
+    $query2 = "SELECT * FROM class_news";
     $result2 = mysqli_query($db, $query2);
 
     if($result2){
         for($i=0; $i<mysqli_num_rows($result2); $i++){
             $row = mysqli_fetch_array($result2);
 
-            if($class === $row['class_key'] && $row['mat_type'] === "notes"){
-                $subject[$size] = $row['subject'];
-                $somo[$size] = strtolower($subject[$size]);
-                $topic[$size] = $row['description'];
-                $date[$size] = $row['date'];
-                $material[$size] = $row['mat_name'];
+            if($class === $row['class'] && $row['news_type'] === "class"){
+                $headline[$size] = $row['headline'];
+                $news[$size] = $row['news'];
+                $posted[$size] = $row['news_date'];
+                $key[$size] = $row['news_key'];
                 $size++;
             }
         }
@@ -66,7 +64,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAJIFUNZA | My Class</title>
     <link rel="stylesheet" type="text/css" href="assets/css/navigation.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/notes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/news.css">
     <link rel="icon" type="image/X-icon" href="../media/images/najifunza-logo.png">
 </head>
 <body>
@@ -97,11 +95,11 @@
                         <p class='optword' id='optwrd1'>Home</p>
                     </a>
                     <a class='option' href='class_notes2.php?id=$id&&class=$class' onmouseover='optshow(6)' onmouseleave='opthide(6)'>
-                        <img src='../media/icons/notes2.png' class='icon'>
+                        <img src='../media/icons/notes.png' class='icon'>
                         <p class='optword' id='optwrd6'>Notes</p>
                     </a>
                     <a class='option' href='class_news.php?id=$id&&class=$class' onmouseover='optshow(2)' onmouseleave='opthide(2)'>
-                        <img src='../media/icons/news.png' class='icon'>
+                        <img src='../media/icons/news2.png' class='icon'>
                         <p class='optword' id='optwrd2'>News</p>
                     </a>
                     <a class='option' href='#' onmouseover='optshow(3)' onmouseleave='opthide(3)'>
@@ -139,37 +137,35 @@
                 </div>
             </div>
             <div class="new">
-                <h1>Notes</h1>
+                <h1>Announcements</h1>
                 <?php
                     if($size == 0){
                         echo
                         "
                             <div class='unavailable'>
-                                <p>Sorry there are no any notes posted yet!</p>
+                                <p>Sorry there are no any announcements posted yet!</p>
                             </div>
                         ";
                     }
-                ?>
-                <div class="notes-cards">
-                    <?php
-                        
+                    else{
+                        echo "<div class='notes-cards'>";
                         for($i=$size-1; $i>=0; $i--){
                             echo 
                             "
-                                <a class='card' href='../$material[$i]'>
-                                    <img src='../media/images/$somo[$i].jpg' class='photo'>
-                                    <div class='description'>
-                                        <p class='subject'>$subject[$i]</p>
-                                        <p class='descript'><b>Topic:</b> $topic[$i]</p>
-                                        <p class='date'><b>Posted on:</b> $date[$i]</p>
-                                    </div>
-                                </a>
+                                
+                                    <a class='card' href='classnews_view.php?id=$id&&class=$class&&key=$key[$i]'>
+                                        <img src='../media/icons/tangazo.webp' class='news-photo'>
+                                        <div class='description'>
+                                            <p class='descript'>$headline[$i]</p>
+                                            <p class='date'>Posted on: $posted[$i]</p>
+                                        </div>
+                                    </a>
                             ";
                         }
-                    
-                ?>
-                </div>
-            </div>
+                        echo "</div>";
+                    }   
+                ?> 
+            </div>      
         </div>
     </div>
 </body>

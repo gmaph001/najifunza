@@ -5,6 +5,7 @@
 
     $id = $_GET['id'];
     $class = $_GET['class'];
+    $key = $_GET['key'];
 
     $query = "SELECT * FROM users";
     $result = mysqli_query($db, $query);
@@ -21,27 +22,18 @@
 
     $user = str_split($username);
 
-    $material = [];
-    $subject = [];
-    $somo = [];
-    $date = [];
-    $topic = [];
-    $size = 0;
-
-    $query2 = "SELECT * FROM class_activity";
+    $query2 = "SELECT * FROM class_news";
     $result2 = mysqli_query($db, $query2);
 
     if($result2){
         for($i=0; $i<mysqli_num_rows($result2); $i++){
             $row = mysqli_fetch_array($result2);
 
-            if($class === $row['class_key'] && $row['mat_type'] === "notes"){
-                $subject[$size] = $row['subject'];
-                $somo[$size] = strtolower($subject[$size]);
-                $topic[$size] = $row['description'];
-                $date[$size] = $row['date'];
-                $material[$size] = $row['mat_name'];
-                $size++;
+            if($class === $row['class'] && $row['news_type'] === "class" && $key === $row['news_key']){
+                $headline = $row['headline'];
+                $news = $row['news'];
+                $date = $row['news_date'];
+                $time = $row['news_time'];
             }
         }
     }
@@ -66,7 +58,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAJIFUNZA | My Class</title>
     <link rel="stylesheet" type="text/css" href="assets/css/navigation.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/notes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/news.css">
     <link rel="icon" type="image/X-icon" href="../media/images/najifunza-logo.png">
 </head>
 <body>
@@ -97,11 +89,11 @@
                         <p class='optword' id='optwrd1'>Home</p>
                     </a>
                     <a class='option' href='class_notes2.php?id=$id&&class=$class' onmouseover='optshow(6)' onmouseleave='opthide(6)'>
-                        <img src='../media/icons/notes2.png' class='icon'>
+                        <img src='../media/icons/notes.png' class='icon'>
                         <p class='optword' id='optwrd6'>Notes</p>
                     </a>
                     <a class='option' href='class_news.php?id=$id&&class=$class' onmouseover='optshow(2)' onmouseleave='opthide(2)'>
-                        <img src='../media/icons/news.png' class='icon'>
+                        <img src='../media/icons/news2.png' class='icon'>
                         <p class='optword' id='optwrd2'>News</p>
                     </a>
                     <a class='option' href='#' onmouseover='optshow(3)' onmouseleave='opthide(3)'>
@@ -138,36 +130,26 @@
                     
                 </div>
             </div>
-            <div class="new">
-                <h1>Notes</h1>
-                <?php
-                    if($size == 0){
-                        echo
-                        "
-                            <div class='unavailable'>
-                                <p>Sorry there are no any notes posted yet!</p>
-                            </div>
-                        ";
-                    }
-                ?>
-                <div class="notes-cards">
-                    <?php
-                        
-                        for($i=$size-1; $i>=0; $i--){
-                            echo 
-                            "
-                                <a class='card' href='../$material[$i]'>
-                                    <img src='../media/images/$somo[$i].jpg' class='photo'>
-                                    <div class='description'>
-                                        <p class='subject'>$subject[$i]</p>
-                                        <p class='descript'><b>Topic:</b> $topic[$i]</p>
-                                        <p class='date'><b>Posted on:</b> $date[$i]</p>
-                                    </div>
-                                </a>
-                            ";
-                        }
-                    
-                ?>
+            <div class="news-cover">
+                <div class="news">
+                    <img src="../media/icons/tangazo.webp" class="news-icon">
+                    <div class="announcement">
+                        <h1 class="headline">
+                            <?php echo "$headline";?>
+                        </h1>
+                        <p class="main-news">
+                            <?php echo "$news";?>
+                        </p>
+                        <p class="post-date">
+                            <?php
+                                echo 
+                                "
+                                    Posted on: $date<br>
+                                    Posted at: $time
+                                ";
+                            ?>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

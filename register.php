@@ -87,6 +87,9 @@
                             $ip = $_SERVER['REMOTE_ADDR'];
                         }
 
+                        $_SESSION['userkey'] = $userkey;
+                        $_SESSION['userID'] = $_SERVER['HTTP_USER_AGENT'];
+
                         $query = "SELECT * FROM users";
                         $result = mysqli_query($db, $query);
 

@@ -199,7 +199,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
+            <?php echo "<a class='nav-link collapsed' href='class_announcements.php?id=$id&&class=$class'>";?>
             <i class="bi bi-megaphone"></i>
             <span>Class Announcements</span>
             </a>
