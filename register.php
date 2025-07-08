@@ -99,6 +99,7 @@
 
                                 if($username === $row['username']){
                                     $exist = true;
+                                    
                                     break;
                                 }
                             }
@@ -110,6 +111,9 @@
                             if($result2){
                                 $exist = true;
                                 echo "Account Created successfully!";
+                                session_start();
+                                session_regenerate_id(true);
+                                session_set_cookie_params(0);
                                 header("location:bridge.php?id=$userkey");
                             }
                             else{
@@ -123,6 +127,9 @@
 
                             if($result3){
                                 echo "Account Created successfully!";
+                                session_start();
+                                session_regenerate_id(true);
+                                session_set_cookie_params(0);
                                 header("location:bridge.php?id=$userkey");
                             }
                             else{
