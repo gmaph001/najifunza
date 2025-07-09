@@ -292,7 +292,7 @@
                                             <option value="History">History</option>
                                             <option value="Kiswahili">Kiswahili</option>
                                             <option value="Civics">Civics</option>
-                                            <option value="Computer Science">Computer Studies</option>
+                                            <option value="Computer Science">Computer Science</option>
                                             <option value="Book Keeping">Book Keeping</option>
                                             <option value="Commerce">Commerce</option>
                                         </select>
@@ -350,9 +350,6 @@
     <footer id="footer" class="footer">
         <div class="copyright">
             &copy; Copyright <strong><span>Najifunza</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            Designed by <a href="https://softdelete.org/">Soft Delete</a>
         </div>
     </footer><!-- End Footer -->
 

@@ -35,14 +35,24 @@
             for($i=0; $i<mysqli_num_rows($result1); $i++){
                 $row = mysqli_fetch_array($result1);
 
-                if($username === $row['username'] && $password === $row['password']){
-                    $id = $row['userkey'];
-                    $exist = true;
-                    $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
-                    $resultupd = mysqli_query($db, $queryupd);
+                if($username === $row['username']){
+                    $hashed = $row['password'];
+                    if(password_verify($password, $hashed)){
+                        $id = $row['userkey'];
+                        $exist = true;
+                        $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
+                        $resultupd = mysqli_query($db, $queryupd);
 
-                    if($resultupd){
+                        if($resultupd){
+                            session_start();
+                            session_regenerate_id(true);
+                            session_set_cookie_params(0);
+
+                            $_SESSION['userkey'] = $id;
+                            $_SESSION['userID'] = $_SERVER['HTTP_USER_AGENT'];
+
                             header("location:somo2.php?id=$id&&class=$class&&lev=$lev&&cat=$cat&&subject=$subject");
+                        }
                     }
                 }
             }
@@ -147,13 +157,6 @@
                 <a href=""><i class="bi bi-facebook"></i></a>
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>
     

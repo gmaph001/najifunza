@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>NAJIFUNZA | Home</title>
+    <title>NAJIFUNZA | Registration</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -50,45 +50,17 @@
             <p>
                 <?php
 
-                    require "../connect.php";
-                    require "address.php";
-                    require "timer.php";
-
                     $id = $_GET['id'];
-                    $class = $_GET['class'];
 
-                    if(isset($_POST['update'])){
-                        $photo = $_FILES['photo']['tmp_name'];
-                        $photoname = $_FILES['photo']['name'];
+                    session_start();
+                    session_regenerate_id(true);
+                    session_set_cookie_params(0);
 
-                        $folder = "../media/classes/images/".$class.".jpg";
-                        $profile = "media/classes/images/".$class.".jpg";
+                    $_SESSION['userkey'] = $id;
+                    $_SESSION['userID'] = $_SERVER['HTTP_USER_AGENT'];
 
-                        $upload = move_uploaded_file($photo, $folder);
-
-                        $query = "SELECT * FROM classes";
-                        $result = mysqli_query($db, $query);
-
-                        if($result){
-                            for($i=0; $i<mysqli_num_rows($result); $i++){
-                                $row = mysqli_fetch_array($result);
-
-                                if($class === $row['class_key']){
-
-                                    $query3 = "UPDATE classes SET class_photo = '$profile' WHERE class_key = '$class'";
-                                    $result3 = mysqli_query($db, $query3);
-
-                                    if($result3){
-                                        header("location:myclass.php?id=$id&&class=$class");
-                                    }
-                                    else{
-                                        echo "Error updating record: " . mysqli_error($db);
-                                    }
-                                    
-                                }
-                            }
-                        }
-                    }
+                    header("location:bridge.php?id=$id");
+                    
                 ?>
             </p>
         </div>

@@ -309,7 +309,7 @@
                                             <option value="History">History</option>
                                             <option value="Kiswahili">Kiswahili</option>
                                             <option value="Civics">Civics</option>
-                                            <option value="Computer Science">Computer Studies</option>
+                                            <option value="Computer Science">Computer Science</option>
                                             <option value="Book Keeping">Book Keeping</option>
                                             <option value="Commerce">Commerce</option>
                                         </select>

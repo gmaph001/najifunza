@@ -55,6 +55,7 @@
             <!-- Login Form -->
             <?php echo "<form class='login' action='verify_otp.php?id=$id' method='POST' enctype='multipart/form-data'>";?>
                 <center><h2>Admin Confirmation</h2></center>
+                <center><p>Check your mail inbox or mail spams for OTP!</p></center>
                 <div class="inputs">
                     <label for="inputNanme4" class="form-label">Enter OTP Key</label>
                     <input type="number" name="key" class="form-control" id="otp" required>
@@ -80,13 +81,6 @@
                 <a href=""><i class="bi bi-facebook"></i></a>
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>
     

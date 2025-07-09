@@ -50,21 +50,17 @@
             <p>
                 <?php
 
-                    
-
                     require "connect.php";
                     require "address.php";
 
                     $id = $_GET['id'];
 
-                    echo "$id";
-                    echo "<br>";
-
                     if(isset($_POST['login'])){
                         $firstname = $_POST['firstname'];
                         $secondname = $_POST['secondname'];;
                         $lastname = $_POST['lastname'];
-                        $school = $_POST['school'];
+                        $shule = $_POST['school'];
+                        $school = mysqli_real_escape_string($db, $shule);
                         $phone = $_POST['phone'];
                         $rank = 1;
                         $codename = "TEA";
@@ -87,9 +83,6 @@
                         }
 
                         $otp = rand(100000, 999999);
-
-                        echo "$otp";
-                        echo "<br>";
 
                         $query2 = "INSERT INTO admin(firstname, secondname, lastname, school, phone, username, email, password, rank, codename, userkey, OTP, photo, security) VALUES('$firstname', '$secondname', '$lastname', '$school', '$phone', '$username', '$email', '$password', '$rank', '$codename', '$id', '$otp', '$photo', '$ip')";
                         $result2 = mysqli_query($db, $query2);

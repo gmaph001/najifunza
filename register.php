@@ -87,9 +87,6 @@
                             $ip = $_SERVER['REMOTE_ADDR'];
                         }
 
-                        $_SESSION['userkey'] = $userkey;
-                        $_SESSION['userID'] = $_SERVER['HTTP_USER_AGENT'];
-
                         $query = "SELECT * FROM users";
                         $result = mysqli_query($db, $query);
 
@@ -99,7 +96,6 @@
 
                                 if($username === $row['username']){
                                     $exist = true;
-                                    
                                     break;
                                 }
                             }
@@ -111,10 +107,7 @@
                             if($result2){
                                 $exist = true;
                                 echo "Account Created successfully!";
-                                session_start();
-                                session_regenerate_id(true);
-                                session_set_cookie_params(0);
-                                header("location:bridge.php?id=$userkey");
+                                header("location:sessions.php?id=$userkey");
                             }
                             else{
                                 echo "Error while creating Account!";
@@ -127,10 +120,7 @@
 
                             if($result3){
                                 echo "Account Created successfully!";
-                                session_start();
-                                session_regenerate_id(true);
-                                session_set_cookie_params(0);
-                                header("location:bridge.php?id=$userkey");
+                                header("location:sessions.php?id=$userkey");
                             }
                             else{
                                 echo "Error while creating Account!";
@@ -157,13 +147,6 @@
                 <a href=""><i class="bi bi-facebook"></i></a>
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://softdelete.org/">Soft Delete</a>
             </div>
         </div>
     

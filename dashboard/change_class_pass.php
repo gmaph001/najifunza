@@ -96,9 +96,6 @@
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
-            <div class="credits">
-                Designed by <a href="https://softdelete.org/">Soft Delete</a>
-            </div>
         </div>
     
     </footer>
