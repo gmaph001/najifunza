@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Enter a sentence to find the number of characters in the longest word!</p>
+            <input type="text" name="sentence" id="stc"><br><br>
+            <button onclick="find()">Click to find</button><br>
+            <p id="answer"></p>
+    </center>
+</body>
+<script>
+
+    function find(){
+        let mstari = document.getElementById("stc").value;
+        
+
+        console.log(mstari);
+
+        let long;
+
+        let array2 = [];
+        let word = "";
+        let size = 0;
+
+        for(let i=0; i<mstari.length; i++){
+            if(mstari[i] == " "){
+                array2[size] = word;
+                word = "";
+                size++;
+            }
+            else if(i == mstari.length-1){
+                word += mstari[i]
+                array2[size] = word;
+            }
+            else{
+                word += mstari[i]
+            }
+        }
+
+        console.log(array2);
+
+        long = array2[0];
+
+        for(let i=1; i<array2.length; i++){
+            if(array2[i].length>long.length){
+                long = array2[i];
+            }
+        }
+
+        console.log(long);
+
+        document.getElementById("answer").innerHTML = `The longest word from a sentence is ${long}, with number of characters ${long.length}. ` ;
+
+        event.preventDefault();
+    }
+</script>
+</html>

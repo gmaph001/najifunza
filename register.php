@@ -94,7 +94,7 @@
                             for($i=0; $i<mysqli_num_rows($result); $i++){
                                 $row = mysqli_fetch_array($result);
 
-                                if($username === $row['username']){
+                                if($username === $row['username'] || $email === $row['email']){
                                     $exist = true;
                                     break;
                                 }
@@ -127,7 +127,7 @@
                             }
                         }
                         else{
-                            echo "Sorry! Username already exist! Please, <br><a href='login.html'><i>Try Again</i></a>";
+                            echo "Sorry! Username or email already exist! Please, <br><a href='login.html'><i>Try Again</i></a>";
                         }
                     }
                 ?>

@@ -112,7 +112,7 @@
                         <img src='../media/icons/project.png' class='icon'>
                         <p class='optword' id='optwrd4'>Projects</p>
                     </a>
-                    <a class='option' href='#' onmouseover='optshow(5)' onmouseleave='opthide(5)'>
+                    <a class='option' href='class_assignments2.php?id=$id&&class=$class' onmouseover='optshow(5)' onmouseleave='opthide(5)'>
                         <img src='../media/icons/assignment.png' class='icon'>
                         <p class='optword' id='optwrd5'>Assign</p>
                     </a>
@@ -132,7 +132,7 @@
                             <a href='class_news.php?id=$id&&class=$class' class='nav-option'>News</a><hr>
                             <a href='#' class='nav-option'>Exams</a><hr>
                             <a href='#' class='nav-option'>Projects</a><hr>
-                            <a href='#' class='nav-option'>Assignments</a><hr>
+                            <a href='class_assignments2.php?id=$id&&class=$class' class='nav-option'>Assignments</a><hr>
                         ";
                     ?>
                     

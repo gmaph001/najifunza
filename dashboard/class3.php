@@ -80,6 +80,7 @@
 
             if($class === $row['class_key']){
                 $classname = $row['class_name'];
+                $classphoto = $row['class_photo'];
             }
         }
     }
@@ -104,6 +105,65 @@
             }
         }
     }
+
+    $assign_key = [];
+    $assign_name = [];
+    $assignment = [];
+    $due = [];
+    $submission = [];
+    $format = [];
+    $size3 = 0;
+
+    $query6 = "SELECT * FROM class_assignment";
+    $result6 = mysqli_query($db, $query6);
+
+    if($result6){
+        for($i=0; $i<mysqli_num_rows($result6); $i++){
+            $row = mysqli_fetch_array($result6);
+
+            if($class === $row['class']){
+                $assign_key[$size3] = $row['assign_key'];
+                $assign_name[$size3] = $row['assign_name'];
+                $assignment[$size3] = $row['assignment'];
+                $due[$size3] = $row['due_date'];
+                $submission[$size3] = $row['submission'];
+                $format[$size3] = $row['format'];
+                $size3++;
+            }
+        }
+    }
+
+    $proj_id = [];
+    $name = [];
+    $aim = [];
+    $proj_type = [];
+    $documentation = [];
+    $proof = [];
+    $proj_due = [];
+    $proj_key = [];
+    $size4 = 0;
+
+    $query2 = "SELECT * FROM class_projects";
+    $result2 = mysqli_query($db, $query2);
+
+    if($result2){
+        for($i=0; $i<mysqli_num_rows($result2); $i++){
+            $row = mysqli_fetch_array($result2);
+
+            if($class === $row['class']){
+                $proj_id[$size4] = $row['proj_ID'];
+                $name[$size4] = $row['proj_name'];
+                $aim[$size4] = $row['proj_aim'];
+                $proj_type[$size4] = $row['proj_type'];
+                $proof[$size4] = $row['proj_proof'];
+                $documentation[$size4] = $row['documentation'];
+                $proj_due[$size4] = $row['proj_due'];
+                $proj_key[$size4] = $row['proj_key'];
+                $size4++;
+            }
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,7 +218,7 @@
                         <img src='../media/icons/project.png' class='icon'>
                         <p class='optword' id='optwrd4'>Projects</p>
                     </a>
-                    <a class='option' href='#' onmouseover='optshow(5)' onmouseleave='opthide(5)'>
+                    <a class='option' href='class_assignments2.php?id=$id&&class=$class' onmouseover='optshow(5)' onmouseleave='opthide(5)'>
                         <img src='../media/icons/assignment.png' class='icon'>
                         <p class='optword' id='optwrd5'>Assign</p>
                     </a>
@@ -178,7 +238,7 @@
                             <a href='class_news.php?id=$id&&class=$class' class='nav-option'>News</a><hr>
                             <a href='#' class='nav-option'>Exams</a><hr>
                             <a href='#' class='nav-option'>Projects</a><hr>
-                            <a href='#' class='nav-option'>Assignments</a><hr>
+                            <a href='class_assignments2.php?id=$id&&class=$class' class='nav-option'>Assignments</a><hr>
                         ";
                     ?>
                     
@@ -249,6 +309,72 @@
                 ?>
                 
                 </div><br>
+                <h1 class="new-things">New Assignments</h1>
+                <?php
+                    if($size3 == 0){
+                        echo
+                        "
+                            <div class='unavailable'>
+                                <p>Sorry there are no any assignments posted yet!</p>
+                            </div>
+                        ";
+                    }
+                ?>
+                <div class="cards">
+
+                <?php
+                    
+                    if($size3>4){
+                        for($i=$size3-1; $i>=$size3-4; $i--){
+                            echo 
+                            "
+                                <div class='card'>
+                                    <img src='../$classphoto' class='photo'>
+                                    <div class='description'>
+                                        <p class='subject'>$assign_name[$i]</p>
+                                        <p class='descript'><b>Type:</b> Assignment</p>
+                                        <a class='view' href='$assignment[$i]'>View assignment</a>";
+                                        if($submission[$i] === "yes"){
+                                            echo 
+                                            "
+                                                <p class='descript'>This assignments accepts submission of $format[$i] format.</p>
+                                                <a class='subBox' href='class_submissions.php?id=$id&&class=$class&&key=$assign_key[$i]'>Submission Box</a><br><br>
+                                            ";
+                                        }
+                                        echo "
+                                        <p class='date'><b>Due on:</b> $due[$i]</p>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    }
+                    else{
+                        for($i=$size3-1; $i>=0; $i--){
+                            echo 
+                            "
+                                <div class='card'>
+                                    <img src='../$classphoto' class='photo'>
+                                    <div class='description'>
+                                        <p class='subject'>$assign_name[$i]</p>
+                                        <p class='descript'><b>Type:</b> Assignment</p>
+                                        <a class='view' href='$assignment[$i]'>View assignment</a>";
+                                        if($submission[$i] === "yes"){
+                                            echo 
+                                            "
+                                                <p class='descript'>This assignments accepts submission of $format[$i] format.</p>
+                                                <a class='subBox' href='class_submissions.php?id=$id&&class=$class&&key=$assign_key[$i]'>Submission Box</a><br><br>
+                                            ";
+                                        }
+                                        echo "
+                                        <p class='date'><b>Due on:</b> $due[$i]</p>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    }
+                ?>
+
+                </div><br>
                 <h1 class="new-things">New Materials</h1>
                 <?php
                     if($size == 0){
@@ -298,7 +424,61 @@
                     }
                 ?>
                 
-                </div>
+                </div><br>
+                <h1 class="new-things">New Projects</h1>
+                <?php
+                    if($size4 == 0){
+                        echo
+                        "
+                            <div class='unavailable'>
+                                <p>Sorry there are no any projects posted yet!</p>
+                            </div>
+                        ";
+                    }
+                ?>
+                <div class="cards">
+
+                <?php
+                    
+                    if($size4>4){
+                        for($i=$size4-1; $i>=$size4-4; $i--){
+                            echo 
+                            "
+                                <div class='card'>
+                                    <img src='../$classphoto' class='photo'>
+                                    <div class='description'>
+                                        <p class='subject'>$name[$i]</p>
+                                        <p class='descript'>
+                                            $aim[$i]
+                                        </p>
+                                        <a class='subBox' href='class_project_sub.php?id=$id&&class=$class&&key=$proj_key[$i]'>Project Box</a><br><br>
+                                        <p class='date'><b>Due on:</b> $proj_due[$i]</p>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    }
+                    else{
+                        for($i=$size4-1; $i>=0; $i--){
+                            echo 
+                            "
+                                <div class='card'>
+                                    <img src='../$classphoto' class='photo'>
+                                    <div class='description'>
+                                        <p class='subject'>$name[$i]</p>
+                                        <p class='descript'>
+                                            $aim[$i]
+                                        </p>
+                                        <a class='subBox' href='class_project_sub.php?id=$id&&class=$class&&key=$proj_key[$i]'>Project Box</a><br><br>
+                                        <p class='date'><b>Due on:</b> $proj_due[$i]</p>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    }
+                ?>
+
+                </div><br>
             </div>
         </div>
     </div>

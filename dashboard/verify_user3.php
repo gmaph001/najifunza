@@ -61,10 +61,10 @@
                     $fine1 = false;
                     $fine2 = false;
 
-                    $query = "SELECT * FROM admin";
+                    $query = "SELECT * FROM users";
                     $result = mysqli_query($db, $query);
 
-                    $query3 = "SELECT * FROM users";
+                    $query3 = "SELECT * FROM admin";
                     $result3 = mysqli_query($db, $query3);
 
                     if(isset($_POST['login'])){
@@ -76,7 +76,7 @@
 
                                 if($id === $row['userkey']){
                                     if($key === $row['OTP']){
-                                        $query2 = "UPDATE admin SET username = '$username', email = '$email' WHERE userkey = '$id'";
+                                        $query2 = "UPDATE users SET username = '$username', email = '$email' WHERE userkey = '$id'";
                                         $result2 = mysqli_query($db, $query2);
 
                                         if($result2){
@@ -93,13 +93,13 @@
                             }
                         }
 
-                        if($result3){
-                            for($i=0; $i<mysqli_num_rows($result3); $i++){
-                                $row = mysqli_fetch_array($result3);
+                        if($fine1){
+                            if($result3){
+                                for($i=0; $i<mysqli_num_rows($result3); $i++){
+                                    $row = mysqli_fetch_array($result3);
 
-                                if($id === $row['userkey']){
-                                    if($key === $row['OTP']){
-                                        $query2 = "UPDATE users SET username = '$username', email = '$email' WHERE userkey = '$id'";
+                                    if($id === $row['userkey']){
+                                        $query2 = "UPDATE admin SET username = '$username', email = '$email' WHERE userkey = '$id'";
                                         $result2 = mysqli_query($db, $query2);
 
                                         if($result2){
@@ -108,9 +108,6 @@
                                         else{
                                             echo "Error while updating profile!";
                                         }
-                                    }
-                                    else{
-                                        echo "Sorry! You have entered incorrect OTP! Please, try again!";
                                     }
                                 }
                             }

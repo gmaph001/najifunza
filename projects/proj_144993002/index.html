@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCE | Home</title>
+    <link rel="icon" type="image/X-icon" href="company.jpg">
+    <link rel="stylesheet" type="text/css" href="navigation.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+</head>
+<body>
+    <div class="navBar">
+        <div class="searchbox">
+            <p class="search" onclick="dark()" id="badilisha">Light</p>
+        </div>
+        <a href="index.html"><img src="logo.jpg" class="logo"></a>
+        <img src="menu.png" class="icon menu" onclick="menushow()">
+    </div>
+    <div class="main">
+        <div class="menubar" id="vertical">
+            <div class="option">
+                <img src="home.png" class="icon">
+                <a href="index.html">Home</a>
+            </div>
+            <div class="option">
+                <img src="store.png" class="icon">
+                <a href="index.html">Gallery</a>
+            </div>
+            <div class="option">
+                <img src="shopping-cart.png" class="icon">
+                <a href="index.html">Shop</a>
+            </div>
+        </div>
+        <div class="intro">
+            <div class="photo-collection" id="photos">
+                <div class="photos">
+                    <div class="photo">
+                        <img src="01.jpg" class="picture" id="pic" name="1">
+                        <div class="cloak1" id="pazia" onclick="go()">n</div>
+                    </div>
+                </div>
+                <div class="others">
+                    <img src="01.jpg" class="collapsed2" id="1" onclick="slideshow(1)">
+                    <img src="02.jpg" class="collapsed" id="2" onclick="slideshow(2)">
+                    <img src="03.jpg" class="collapsed" id="3" onclick="slideshow(3)">
+                    <img src="04.jpg" class="collapsed" id="4" onclick="slideshow(4)">
+                </div>
+                <div class="arrows">
+                    <img src="arrow.png" class="icon left" onclick="goleft()">
+                    <img src="arrow.png" class="icon right" onclick="goright()">
+                </div>        
+            </div>
+        </div>
+        <div class="section" id="scrolled">
+            <img src="company.jpg" class="section-photo" id="photo">
+            <div class="section-wrd">
+                <h1 class="section-header" id="head">About</h1>
+                <p class="section-pass" id="pass">
+                    Nsamo Car Empire. The best to get your automobile. Here, you will get the best quality automobiles with the best 
+                    condition ever in Tanzania. You are welcome dear customer to purchase any vehicle of your liking!
+                </p>
+            </div>
+        </div>
+        <div class="section2" id="scrolled">
+            <img src="company.jpg" class="section-photo2" id="photo">
+            <div class="section-wrd2">
+                <h1 class="section-header2" id="head">About</h1>
+                <p class="section-pass2" id="pass">
+                    Nsamo Car Empire. The best place to get your automobile. Here, you will get the best quality automobiles with the best 
+                    condition ever in Tanzania. You are welcome dear customer to purchase any vehicle of your liking!
+                </p>
+            </div>
+        </div>
+        <div class="section3" id="scrolled">
+            <div class="section-wrd3">
+                <h1 class="section-header3" id="head">Services</h1>
+                <p class="section-pass3" id="pass">
+                    We provide the best Services like:<br>
+                    <ul>
+                        <li><b>Purchase of Vehicles</b></li>
+                        <li><b>Purchase of Spare Parts</b></li>
+                        <li><b>Car Servicing</b></li>
+                    </ul>
+                </p>
+            </div>
+            <img src="company.jpg" class="section-photo3" id="photo">
+        </div>
+    </div>    
+    <div class="footer">
+        <img src="logo.jpg" class="logo">
+        <div class="socials">
+            <div class="links">
+                <a href="#"><img src="whatsapp.jpeg" class="social"></a>
+                <a href="#"><img src="facebook.jpg" class="social"></a>
+                <a href="#"><img src="x.jpg" class="social"></a>
+                <a href="#"><img src="instagram.png" class="social"></a>
+            </div>
+            <p>@nsamocarempire</p>
+        </div>
+        <div class="lowmenu">
+            <a href="index.html">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Shop</a>
+        </div>
+    </div> 
+</body>
+<script>
+    let a = 0;
+    let b = 1;
+    let c = 0;
+    let d = 0;
+    let trk = 0;
+
+    function even(n){
+        if(n%2 == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function dark(){
+        d++;
+        if(even(d)){
+            document.querySelector('.navBar').style.color = "white";
+            document.querySelector('.navBar').style.background = "black";
+            document.querySelector('.main').style.color = "white";
+            document.querySelector('.main').style.background = "black";
+            document.querySelector('.logo').src = "logo.jpg";
+            document.getElementById("badilisha").innerHTML = "Light";
+            document.getElementsByName("a").color = "black";
+        }
+        else{
+            document.querySelector('.navBar').style.color = "black";
+            document.querySelector('.navBar').style.background = "white";
+            document.querySelector('.main').style.color = "black";
+            document.querySelector('.main').style.background = "white";
+            document.querySelector('.logo').src = "logo2.jpg";
+            document.querySelector('.search').style.color = "white";
+            document.getElementById("badilisha").innerHTML = "Dark";
+            document.getElementsByName("a").color = "white";
+            document.getElementById("vertical").style.background = "black";
+        }
+        
+    }
+
+    let menuicon = document.querySelector('.menu');
+
+    
+    function menushow(){
+        a++;
+        if(even(a)){
+            menuicon.src = "menu.png"
+            document.getElementById("vertical").setAttribute("class", "menubar3");
+        }
+        else{
+            menuicon.src = "remove.png"
+            document.getElementById("vertical").setAttribute("class", "menubar2");
+        }
+    }
+
+    function go(){
+        let link = document.getElementById("pic").src;
+
+        window.location.href = link;
+    }
+
+    function slideshow(n){
+
+        let image = document.getElementById(n).src;
+
+        document.getElementById("pic").src = image;
+        document.getElementById("pazia").setAttribute("class", "cloak"+n);
+        document.getElementById("pic").setAttribute("name", n);
+
+        if(trk == 0){
+            document.getElementById(n).setAttribute("class", "collapsed2");
+        }
+        else{
+            document.getElementById(n).setAttribute("class", "collapsed2");
+            document.getElementById(trk).setAttribute("class", "collapsed");
+        }
+        
+        b = n;
+        trk = n;
+
+    }
+
+    function goright(){
+
+        b++;
+
+        if(b>4){
+            b = 1;
+        }
+
+        let image = document.getElementById(b).src;
+                
+        document.getElementById("pic").src = image;
+        document.getElementById("pazia").setAttribute("class", "cloak"+b);
+        document.getElementById("pic").setAttribute("name", b);
+
+        
+    }
+
+    function goleft(){
+        b--;
+
+        if(b<1){
+            b = 4;
+        }
+
+        let image = document.getElementById(b).src;
+                
+        document.getElementById("pic").src = image;
+        document.getElementById("pazia").setAttribute("class", "cloak"+b);
+        document.getElementById("pic").setAttribute("name", b);
+    }
+
+    function slider(){
+
+        if(b>4){
+            b = 1;
+        }
+
+        let image = document.getElementById(b).src;
+                
+        document.getElementById("pic").src = image;
+        document.getElementById("pazia").setAttribute("class", "cloak"+b);
+        document.getElementById("pic").setAttribute("name", b);
+
+        for(let i=1; i<5; i++){
+            if(i === b){
+                document.getElementById(b).setAttribute("class", "collapsed2");
+            }
+            else{
+                document.getElementById(i).setAttribute("class", "collapsed");
+            }
+        }
+
+        b++;
+        
+    }
+
+    setInterval(() => {
+        slider();
+    }, 3000);
+    
+
+    
+</script>
+</html>

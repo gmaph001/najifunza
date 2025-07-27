@@ -193,7 +193,7 @@ hr{
         transform: translateY(-60vh);
     }
 }
-@media(max-width: 1000px){
+@media(max-width: 1050px){
     .navigation{
         width: 90vw;
     }

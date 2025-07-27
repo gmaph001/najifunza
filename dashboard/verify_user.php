@@ -65,7 +65,7 @@
                          require '../PHPMailer/src/PHPMailer.php';
                          require '../PHPMailer/src/SMTP.php';
 
-                         $query = "SELECT * FROM admin";
+                         $query = "SELECT * FROM users";
                          $result = mysqli_query($db, $query);
 
 
@@ -74,8 +74,6 @@
                                    $row = mysqli_fetch_array($result);
 
                                    if($id === $row['userkey']){
-                                        $firstname = $row['firstname'];
-                                        $lastname = $row['lastname'];
                                         $key = $row['OTP'];
 
                                         $mail = new PHPMailer(true);
@@ -107,12 +105,12 @@
                                              $mail->isHTML(true);
                                              $mail->Subject = 'Email Confirmation.';
                                              $mail->Body    = "
-                                                  <h1>Dear {$firstname} {$lastname}, your OTP is: </h1>
+                                                  <h1>Dear {$username}, your OTP is: </h1>
                                                   <h2>{$key}</h2>
                                              ";
                                              
                                              if ($mail->send()) {
-                                                  $query2 = "UPDATE admin SET OTP = '$key' WHERE userkey = '$id'";
+                                                  $query2 = "UPDATE users SET OTP = '$key' WHERE userkey = '$id'";
                                                   $result2 = mysqli_query($db, $query2);
                                                   if($result2){
                                                        header("location:verify_user2.php?id=$id&&user=$username&&email=$email");

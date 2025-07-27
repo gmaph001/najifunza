@@ -92,14 +92,27 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <?php
-                    echo 
+                     echo 
                     "
-                        <li><a href='home.php?id=$id'>Home</a></li>
-                        <li><a href='news.php?id=$id'>News</a></li>
-                        <li><a href='students.php?id=$id' class='active'>Notes</a></li>
+                        <li><a href='home.php?id=$id' class='active'>Home</a></li>
+                         <li><a href='news.php?id=$id'>News</a></li>
+                         <li><a href='students.php?id=$id'>Notes</a></li>
                         <li><a href='exams.ph'?id=$id'>Exams</a></li>
-                        <li><a href='contact2.php?id=$id'>Contact</a></li>
-                        <li><a href='classes.php?id=$id'>My Classes</a></li>
+                        <li><a href='contact2.php?id=$id'>Contact</a></li>";
+                    if($exist){
+                        echo 
+                        "
+                            <li><a href='dashboard/class.php?id=$id'>Classes</a></li>
+                        ";
+                    }
+                    else{
+                        echo 
+                        "
+                            <li><a href='dashboard/class2.php?id=$id'>Classes</a></li>
+                        ";
+                    }
+                    echo
+                    "
                         <li><a href='logout.php?id=$id' class='logout-btn'>Logout</a></li>
                     ";
                 ?>

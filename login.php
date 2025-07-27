@@ -32,7 +32,7 @@
 
                 $hashed = $row['password'];
 
-                if($username === $row['username']){
+                if($username === $row['username'] || $username === $row['email']){
                     if(password_verify($password, $hashed)){
                         $id = $row['userkey'];
                         $exist = true;
@@ -63,7 +63,7 @@
 
                 $hashed = $row['password'];
 
-                if($username === $row['username']){
+                if($username === $row['username'] || $username === $row['email']){
                     if(password_verify($password, $hashed)){
                         $id = $row['userkey'];
                         $exist = true;

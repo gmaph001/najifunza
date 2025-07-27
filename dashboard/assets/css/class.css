@@ -73,7 +73,28 @@
 }
 .descript{
     font-size: 12pt;
-    margin-top: 1vh;
+    margin: 3vh 0vw;
+}
+.view{
+    color: rgb(255, 255, 255);
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 2vh 0vw;
+}
+.view:hover{
+    color: green;
+}
+.subBox{
+    margin-top: 7vh;
+    padding: 5px 10px;
+    font-size: 12pt;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 3px rgba(0, 142, 0, 0.455);
+    color: white;
+    background-color: black;
+}
+.subBox:hover{
+    background-color: green;
 }
 .date{
     font-size: 10pt;
@@ -138,7 +159,7 @@
     font-size: 12pt;
     font-weight: bold;
     text-align: left;
-    margin-bottom: 3vh;
+    margin: 3vh 0vw;
 }
 .hide{
     padding: 7px 15px;

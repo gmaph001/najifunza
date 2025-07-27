@@ -185,7 +185,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link collapsed' href='myclass.php?id=$id&&class=$class'>";?>
+            <?php echo "<a class='nav-link collapsed' href='class_assignments.php?id=$id&&class=$class'>";?>
             <i class="bi bi-grid"></i>
             <span>Class Assignments</span>
             </a>
@@ -199,7 +199,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <?php echo "<a class='nav-link ' href='myclass.php?id=$id&&class=$class'>";?>
+            <?php echo "<a class='nav-link ' href='class_announcements.php?id=$id&&class=$class'>";?>
             <i class="bi bi-megaphone"></i>
             <span>Class Announcements</span>
             </a>
@@ -240,8 +240,8 @@
                             <?php echo "<form class='row g-3' method='POST' action='upload_class_news.php?id=$id&&class=$class' enctype='multipart/form-data'>";?>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="desribe" name="headline" required>
-                                        <label for="floatingTextarea">Headline</label>
+                                        <input type="text" class="form-control" id="desribe" name="headline" placeholder="This is my healine..." required>
+                                        <label for="floatingName">Headline</label>
                                     </div>
                                 </div>
 

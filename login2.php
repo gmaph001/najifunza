@@ -63,7 +63,7 @@
             <?php echo "<form class='login' action='login3.php?cat=$cat&&lev=$lev&&class=$class&&subject=$subject' method='POST' enctype='multipart/form-data'>";?>
                 <center><h2>Login</h2></center>
                 <div class="inputs">
-                    <label for="inputNanme4" class="form-label">Username</label>
+                    <label for="inputNanme4" class="form-label">Username/Email</label>
                     <input type="text" name="username" class="form-control" id="inputNanme4" required>
                 </div>
                 <div class="inputs">

@@ -25,22 +25,20 @@
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
-        $query1 = "SELECT * FROM admin";
-        $query2 = "SELECT * FROM users";
+        $query1 = "SELECT * FROM users";
 
         $result1 = mysqli_query($db, $query1);
-        $result2 = mysqli_query($db, $query2);
 
         if(mysqli_num_rows($result1)>0){
             for($i=0; $i<mysqli_num_rows($result1); $i++){
                 $row = mysqli_fetch_array($result1);
 
-                if($username === $row['username']){
+                if($username === $row['username'] || $username === $row['email']){
                     $hashed = $row['password'];
                     if(password_verify($password, $hashed)){
                         $id = $row['userkey'];
                         $exist = true;
-                        $queryupd = "UPDATE admin SET security = '$ip' WHERE userkey = '$id'";
+                        $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
                         $resultupd = mysqli_query($db, $queryupd);
 
                         if($resultupd){
@@ -53,23 +51,6 @@
 
                             header("location:somo2.php?id=$id&&class=$class&&lev=$lev&&cat=$cat&&subject=$subject");
                         }
-                    }
-                }
-            }
-        }
-        
-        if(mysqli_num_rows($result2)>0){
-            for($i=0; $i<mysqli_num_rows($result2); $i++){
-                $row = mysqli_fetch_array($result2);
-
-                if($username === $row['username'] && $password === $row['password']){
-                    $id = $row['userkey'];
-                    $exist = true;
-                    $queryupd = "UPDATE users SET security = '$ip' WHERE userkey = '$id'";
-                    $resultupd = mysqli_query($db, $queryupd);
-
-                    if($resultupd){
-                            header("location:somo2.php?id=$id&&class=$class&&lev=$lev&&cat=$cat&&subject=$subject");
                     }
                 }
             }

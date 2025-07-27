@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Sign-Up</title>
+     <!-- <link rel="stylesheet" type="text/css" href="signUp-page.css"> -->
+     <link rel="stylesheet" type="text/css" href="login-page.css">
+     <link rel="icon" type="image/x-icon" href="media/images/srss-logo.jfif">
+</head>
+<body>     
+     <div class="main">
+          <div class="title"></div><br><br>
+          <div class="form">
+               <form action="create.php" method="post" name="login" enctype="multipart/form-data">
+                    <fieldset>
+                         <legend><b>Username</b></legend>
+                         <label><b>Username: </b></label><input type="text" required name="username" id="uname"><br>
+                         <p id="result4"></p><br>
+                         <label><b>Email: </b></label><input type="email" required name="email" id="email"><br>
+                         <p id="result5"></p><br>
+                         <label><b>Enter Password: </b></label> <input type="password" required name="secret" id="e-pword" placeholder="At least 9 characters"><br><br>
+                         <p id="result6"></p><br>
+                         <label><b>Confirm Password: </b></label> <input type="password" required name="confirm" id="c-pword" placeholder="Confirm password"><br>
+                         <p id="result7"></p><br>
+                    </fieldset><br><br>
+                    <fieldset>
+                         <legend><b>Class credentials</b></legend>
+                         <label><b>You are in Form: </b></label><input type="number" required name="class" id="numb" placeholder="In digits"><br>
+                         <p id="result8"></p><br>
+                         <label><b>You are in stream: </b></label><input type="text" required name="stream" id="strm" placeholder="Write in uppercase"><br>
+                         <p id="strmresult"></p><br>
+                    </fieldset><br><br>
+                    <fieldset>
+                         <legend><b>Photo</b></legend>
+                         <label><b>Your photo: </b></label><input type="file" name="photo" id="pic" placeholder="upload your photo" onchange="check()" accept=".png,.jpg,.jpeg"><br>
+                         <p id="dpresult"></p><br>
+                    </fieldset><br><br>
+                    <button onclick="send()" name="signup" id="signUp">Sign Up</button><br><br>
+               </form>
+          </div>
+     </div>
+     <script>
+          function check(){
+               let photo = document.getElementById("pic");
+               let returnvalue = true;
+               if(document.login.photo.value == ""){
+                    return returnvalue;
+               }
+               else{
+                    let photoresponse = "*Please, your file should be less than 2MB!*";
+                    let size = Math.round((photo.files[0].size)/1024/1024);
+                    if(size>2){
+                         document.getElementById("dpresult").innerHTML = photoresponse;
+                         event.preventDefault();
+                         returnvalue = false;
+                    }
+                    return returnvalue;
+               }
+          }
+
+          function send(){
+               
+               let a = document.getElementById("e-pword").value; //Enter password representation
+               let b = document.getElementById("c-pword").value; //Confirm password representation
+               let c = document.getElementById("numb").value; //Class representation
+               let stream = ['T', 'K', 'U', 'E', 'A', 'B', 'PCM', 'PMC', 'PGM', 'PCB', 'CBG', 'ECA', 'EGM', 'HKL', 'HGL', 'HGE']; //Array for confirming the streams of classes a user enters
+               let d = document.getElementById("strm").value; //Representation of streams
+               let result = 'Please enter the correct stream!'; //Result to displayed if the stream entered is not correct
+               let ageresult = 'Please enter your correct age!'; //the result to be displayed if the age entered is out of range.
+               let checkclass= false;
+               let alert = '*This field is required!*';
+               let classresult = "*Please enter the correct class!*";
+               let pass = '*Please enter more than 9 characters!*';
+               let comb = '*Please enter the correct stream!*';
+               let confirm = '*Please recheck your password!*';
+               let dpresult = "*You cannot submit form with file this large!*";
+               let picresponse = check();
+
+               
+
+               if(document.login.email.value=="") // code to check if the user has not entered his/her email
+               {
+                    document.getElementById('result5').innerHTML = alert;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result5').innerHTML = "";
+               }
+               if(document.login.uname.value=="")// code to check if the user has entered the username
+               {
+                    document.getElementById('result4').innerHTML = alert;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result4').innerHTML = "";
+               }
+               if(a=="" && b=="") // code to check is the user has not entered any password
+               {
+                    document.getElementById('result6').innerHTML = alert;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result6').innerHTML = "";
+               }
+               if(a!==b) // code to check if the password entered and the one confirmed are equivalent
+               {
+                    document.getElementById('result7').innerHTML = confirm;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result7').innerHTML = "";
+               }
+               if(document.login.secret.value.length<9) // code to make sure that the number of characters entered in password are 9 characters
+               {
+                    document.getElementById('result6').innerHTML = pass;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result6').innerHTML = "";
+               }
+               
+               if(c=0 || c<1 || c>6) // code to check if the class entered is from 1-6 only
+               {
+                    document.getElementById('result8').innerHTML = classresult;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById('result8').innerHTML = "";
+               }
+
+               if(d=="") // code to check if the user has entered his/her stream
+               {
+                    document.getElementById('strmresult').innerHTML = alert;
+                    event.preventDefault();
+               }
+               else{
+                    for(let i=0; i<stream.length; i++) //code to check if the stream entered corresponds to the values of the streams stored in the array
+                    {
+                         if(d==stream[i]){
+                              checkclass = true;
+                              break;
+                         }
+                    }
+                    if(checkclass == false)
+                    {
+                         document.getElementById("strmresult").innerHTML = comb;
+                    }
+                    else{
+                         document.getElementById("strmresult").innerHTML = "";
+                    }
+               }
+
+               if(!picresponse){
+                    document.getElementById("dpresult").innerHTML = dpresult;
+                    event.preventDefault();
+               }
+               else{
+                    document.getElementById("dpresult").innerHTML = "";
+               }
+          }
+
+          
+     </script>
+</body>
+</html>

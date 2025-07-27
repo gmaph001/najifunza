@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <fieldset style="width: 20%; background-color: grey; color: white; height: 80px;">
+            <h1 id="reversed" style="color: white"></h1>
+        </fieldset> <br>
+        <input type="text" id="user_text"> <br><br>
+        <button onclick="str_reverse()">Reverse</button>&nbsp;
+        <button onclick="str_clear()">Clear</button><br>
+    </center>
+    <script>
+        function str_reverse(){
+            let str = document.getElementById("user_text").value;
+
+            let not = str.split('');
+
+            let arr = [];
+            let word = "";
+            let size = 0;
+
+            for(let i=not.length-1; i>=0; i--){
+                arr[size] = not[i];
+
+                size++;
+            }
+
+            for(let j=0; j<size; j++){
+                word += arr[j];
+            }
+
+            document.getElementById("reversed").innerHTML = word;
+
+        }
+
+        function str_clear(){
+            document.getElementById("user_text").value = "";
+            document.getElementById("reversed").innerHTML = "";
+            word = "";
+        }
+    </script>
+</body>
+</html>
